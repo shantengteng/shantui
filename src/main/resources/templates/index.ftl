@@ -15,7 +15,7 @@
     <!-- 页面关键词 -->
     <meta name="keywords" content="${site.keywords}"/>
     <!-- 网页作者 -->
-    <meta name="author" content="${site.author}"/>
+    <#--<meta name="author" content="${site.author}"/>-->
     <link rel="icon" href="${site.logo}">
     <link rel="stylesheet" href="${base}/static/layui/css/layui.css" media="all" />
     <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
@@ -26,7 +26,7 @@
     <!-- 顶部 -->
     <div class="layui-header header">
         <div class="layui-main">
-            <a href="#" class="logo">mysiteforme</a>
+            <a href="#" class="logo">一体化研究院</a>
             <!-- 显示/隐藏菜单 -->
             <a href="javascript:" class="iconfont hideMenu icon-menu1"></a>
             <#--<!-- 搜索 &ndash;&gt;-->
@@ -42,25 +42,25 @@
                 <#--<i class="layui-icon">&#xe615;</i>-->
             <#--</div>-->
             <!-- 天气信息 -->
-            <div class="weather" pc>
-                <div id="tp-weather-widget"></div>
-                <script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script>
-                <script>tpwidget("init", {
-                    "flavor": "slim",
-                    "location": "WX4FBXXFKE4F",
-                    "geolocation": "enabled",
-                    "language": "zh-chs",
-                    "unit": "c",
-                    "theme": "chameleon",
-                    "container": "tp-weather-widget",
-                    "bubble": "disabled",
-                    "alarmType": "badge",
-                    "color": "#FFFFFF",
-                    "uid": "U9EC08A15F",
-                    "hash": "039da28f5581f4bcb5c799fb4cdfb673"
-                });
-                tpwidget("show");</script>
-            </div>
+            <#--<div class="weather" pc>-->
+                <#--<div id="tp-weather-widget"></div>-->
+                <#--<script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script>-->
+                <#--<script>tpwidget("init", {-->
+                    <#--"flavor": "slim",-->
+                    <#--"location": "WX4FBXXFKE4F",-->
+                    <#--"geolocation": "enabled",-->
+                    <#--"language": "zh-chs",-->
+                    <#--"unit": "c",-->
+                    <#--"theme": "chameleon",-->
+                    <#--"container": "tp-weather-widget",-->
+                    <#--"bubble": "disabled",-->
+                    <#--"alarmType": "badge",-->
+                    <#--"color": "#FFFFFF",-->
+                    <#--"uid": "U9EC08A15F",-->
+                    <#--"hash": "039da28f5581f4bcb5c799fb4cdfb673"-->
+                <#--});-->
+                <#--tpwidget("show");</script>-->
+            <#--</div>-->
             <!-- 顶部右侧菜单 -->
             <ul class="layui-nav top_menu">
                 <#--<li class="layui-nav-item showNotice" id="showNotice" pc>-->
@@ -77,7 +77,7 @@
                 <#--</li>-->
                 <li class="layui-nav-item" pc>
                     <a href="javascript:">
-                        <img src="<#if (currentUser.icon??)>${currentUser.icon}<#else>${base}/static/images/face.jpg</#if>" class="layui-circle" width="35" height="35">
+                        <img src="<#if (currentUser.icon??)>${currentUser.icon}<#else>${base}/static/images/yw02.png</#if>" class="layui-circle" width="35" height="35">
                         <cite><#if currentUser.nickName!''>${currentUser.nickName}<#else>${currentUser.loginName}</#if></cite>
                     </a>
                     <dl class="layui-nav-child">
@@ -93,7 +93,7 @@
     <!-- 左侧导航 -->
     <div class="layui-side layui-bg-black">
         <div class="user-photo">
-            <a class="img" title="我的头像" ><img src="<#if (currentUser.icon??)>${currentUser.icon}<#else>${base}/static/images/face.jpg</#if>"></a>
+            <a class="img" title="我的头像" ><img src="<#if (currentUser.icon??)>${currentUser.icon}<#else>${base}/static/images/yw02.png</#if>"></a>
             <p>你好！<span class="userName"><#if currentUser.nickName!''>${currentUser.nickName}<#else>${currentUser.loginName}</#if></span>, 欢迎登录</p>
         </div>
         <div class="navBar layui-side-scroll"></div>
@@ -123,7 +123,7 @@
     </div>
     <!-- 底部 -->
     <div class="layui-footer footer">
-        <p>Copyright © 2018孤独的旅行家  Design By 马哥 <a href="http://www.miibeian.gov.cn" target="_blank">苏ICP备17063650号 </a></p>
+        <p>Copyright © 山推  Design By 山推 </p>
     </div>
 </div>
 <script>

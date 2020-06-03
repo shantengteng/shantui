@@ -102,15 +102,15 @@
     <select id="selectDetailArticle" resultType="com.mysiteforme.admin.entity.BlogArticle" parameterType="java.util.Map">
         select
         <include refid="select"/>,
-        c.id            AS "blogChannel.id",
-        c.parent_id     AS "blogChannel.parentId",
-        c.parent_ids    AS "blogChannel.parentIds",
-        c.href          AS "blogChannel.href",
-        c.name          AS "blogChannel.name",
+        c.id              AS "blogChannel.id",
+        c.parent_id       AS "blogChannel.parentId",
+        c.parent_ids      AS "blogChannel.parentIds",
+        c.href            AS "blogChannel.href",
+        c.name            AS "blogChannel.name",
         c.is_base_channel AS "blogChannel.baseChannel",
-        c.can_comment   AS "blogChannel.canComment",
-        c.is_no_name    AS "blogChannel.isNoName",
-        c.sort          AS "blogChannel.sort"
+        c.can_comment     AS "blogChannel.canComment",
+        c.is_no_name      AS "blogChannel.isNoName",
+        c.sort            AS "blogChannel.sort"
         FROM
         blog_article a
         left join blog_channel c on c.id = a.channel_id
@@ -128,7 +128,7 @@
             and a.publist_time &gt;= #{beginPublistTime}
         </if>
         <if test="endPublistTime != null">
-            and a.publist_time $lt;= #{endPublistTime}
+                and a.publist_time $lt;= #{endPublistTime}
         </if>
         <if test="content != null and content != ''">
             and a.content like concat('%',#{content},'%')
