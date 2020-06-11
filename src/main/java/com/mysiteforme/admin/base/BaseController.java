@@ -61,4 +61,13 @@ public class BaseController {
 
 	@Autowired
 	protected UploadInfoService uploadInfoService;
+
+	@Autowired
+	protected DeviceService deviceService;
+
+	@Autowired
+	protected DeviceFuelConsumptionService deviceFuelConsumptionService;
+
+	@Autowired
+	protected DeviceGreaseService deviceGreaseService;
 }

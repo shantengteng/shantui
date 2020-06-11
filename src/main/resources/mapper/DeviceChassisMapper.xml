@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mysiteforme.admin.dao.DeviceChassisMapper" >
+  <resultMap id="BaseResultMap" type="com.mysiteforme.admin.entity.DeviceChassis" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="device_id" property="deviceId" jdbcType="BIGINT" />
+    <result column="sprocket_cycle" property="sprocketCycle" jdbcType="DECIMAL" />
+    <result column="sprocket_num" property="sprocketNum" jdbcType="INTEGER" />
+    <result column="sprocket_price" property="sprocketPrice" jdbcType="DECIMAL" />
+    <result column="sprocket_change_time" property="sprocketChangeTime" jdbcType="DECIMAL" />
+    <result column="idler_cycle" property="idlerCycle" jdbcType="DECIMAL" />
+    <result column="idler_num" property="idlerNum" jdbcType="INTEGER" />
+    <result column="idler_price" property="idlerPrice" jdbcType="DECIMAL" />
+    <result column="idler_change_time" property="idlerChangeTime" jdbcType="DECIMAL" />
+    <result column="wheel_cycle" property="wheelCycle" jdbcType="DECIMAL" />
+    <result column="wheel_num" property="wheelNum" jdbcType="INTEGER" />
+    <result column="wheel_price" property="wheelPrice" jdbcType="DECIMAL" />
+    <result column="wheel_change_time" property="wheelChangeTime" jdbcType="DECIMAL" />
+    <result column="track_rollers_cycle" property="trackRollersCycle" jdbcType="DECIMAL" />
+    <result column="track_rollers_num" property="trackRollersNum" jdbcType="INTEGER" />
+    <result column="track_rollers_price" property="trackRollersPrice" jdbcType="DECIMAL" />
+    <result column="track_rollers_change_time" property="trackRollersChangeTime" jdbcType="DECIMAL" />
+    <result column="chain_cycle" property="chainCycle" jdbcType="DECIMAL" />
+    <result column="chain_num" property="chainNum" jdbcType="INTEGER" />
+    <result column="chain_price" property="chainPrice" jdbcType="DECIMAL" />
+    <result column="chain_change_time" property="chainChangeTime" jdbcType="DECIMAL" />
+    <result column="axis_cycle" property="axisCycle" jdbcType="DECIMAL" />
+    <result column="axis_num" property="axisNum" jdbcType="INTEGER" />
+    <result column="axis_price" property="axisPrice" jdbcType="DECIMAL" />
+    <result column="axis_change_time" property="axisChangeTime" jdbcType="DECIMAL" />
+    <result column="labor_cost_chassis" property="laborCostChassis" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, device_id, sprocket_cycle, sprocket_num, sprocket_price, sprocket_change_time, 
+    idler_cycle, idler_num, idler_price, idler_change_time, wheel_cycle, wheel_num, wheel_price, 
+    wheel_change_time, track_rollers_cycle, track_rollers_num, track_rollers_price, track_rollers_change_time, 
+    chain_cycle, chain_num, chain_price, chain_change_time, axis_cycle, axis_num, axis_price, 
+    axis_change_time, labor_cost_chassis, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mysiteforme.admin.entity.DeviceChassisExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from device_chassis
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from device_chassis
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from device_chassis
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mysiteforme.admin.entity.DeviceChassisExample" >
+    delete from device_chassis
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mysiteforme.admin.entity.DeviceChassis" >
+    insert into device_chassis (id, device_id, sprocket_cycle, 
+      sprocket_num, sprocket_price, sprocket_change_time, 
+      idler_cycle, idler_num, idler_price, 
+      idler_change_time, wheel_cycle, wheel_num, 
+      wheel_price, wheel_change_time, track_rollers_cycle, 
+      track_rollers_num, track_rollers_price, track_rollers_change_time, 
+      chain_cycle, chain_num, chain_price, 
+      chain_change_time, axis_cycle, axis_num, 
+      axis_price, axis_change_time, labor_cost_chassis, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{deviceId,jdbcType=BIGINT}, #{sprocketCycle,jdbcType=DECIMAL}, 
+      #{sprocketNum,jdbcType=INTEGER}, #{sprocketPrice,jdbcType=DECIMAL}, #{sprocketChangeTime,jdbcType=DECIMAL}, 
+      #{idlerCycle,jdbcType=DECIMAL}, #{idlerNum,jdbcType=INTEGER}, #{idlerPrice,jdbcType=DECIMAL}, 
+      #{idlerChangeTime,jdbcType=DECIMAL}, #{wheelCycle,jdbcType=DECIMAL}, #{wheelNum,jdbcType=INTEGER}, 
+      #{wheelPrice,jdbcType=DECIMAL}, #{wheelChangeTime,jdbcType=DECIMAL}, #{trackRollersCycle,jdbcType=DECIMAL}, 
+      #{trackRollersNum,jdbcType=INTEGER}, #{trackRollersPrice,jdbcType=DECIMAL}, #{trackRollersChangeTime,jdbcType=DECIMAL}, 
+      #{chainCycle,jdbcType=DECIMAL}, #{chainNum,jdbcType=INTEGER}, #{chainPrice,jdbcType=DECIMAL}, 
+      #{chainChangeTime,jdbcType=DECIMAL}, #{axisCycle,jdbcType=DECIMAL}, #{axisNum,jdbcType=INTEGER}, 
+      #{axisPrice,jdbcType=DECIMAL}, #{axisChangeTime,jdbcType=DECIMAL}, #{laborCostChassis,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mysiteforme.admin.entity.DeviceChassis" >
+    insert into device_chassis
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="sprocketCycle != null" >
+        sprocket_cycle,
+      </if>
+      <if test="sprocketNum != null" >
+        sprocket_num,
+      </if>
+      <if test="sprocketPrice != null" >
+        sprocket_price,
+      </if>
+      <if test="sprocketChangeTime != null" >
+        sprocket_change_time,
+      </if>
+      <if test="idlerCycle != null" >
+        idler_cycle,
+      </if>
+      <if test="idlerNum != null" >
+        idler_num,
+      </if>
+      <if test="idlerPrice != null" >
+        idler_price,
+      </if>
+      <if test="idlerChangeTime != null" >
+        idler_change_time,
+      </if>
+      <if test="wheelCycle != null" >
+        wheel_cycle,
+      </if>
+      <if test="wheelNum != null" >
+        wheel_num,
+      </if>
+      <if test="wheelPrice != null" >
+        wheel_price,
+      </if>
+      <if test="wheelChangeTime != null" >
+        wheel_change_time,
+      </if>
+      <if test="trackRollersCycle != null" >
+        track_rollers_cycle,
+      </if>
+      <if test="trackRollersNum != null" >
+        track_rollers_num,
+      </if>
+      <if test="trackRollersPrice != null" >
+        track_rollers_price,
+      </if>
+      <if test="trackRollersChangeTime != null" >
+        track_rollers_change_time,
+      </if>
+      <if test="chainCycle != null" >
+        chain_cycle,
+      </if>
+      <if test="chainNum != null" >
+        chain_num,
+      </if>
+      <if test="chainPrice != null" >
+        chain_price,
+      </if>
+      <if test="chainChangeTime != null" >
+        chain_change_time,
+      </if>
+      <if test="axisCycle != null" >
+        axis_cycle,
+      </if>
+      <if test="axisNum != null" >
+        axis_num,
+      </if>
+      <if test="axisPrice != null" >
+        axis_price,
+      </if>
+      <if test="axisChangeTime != null" >
+        axis_change_time,
+      </if>
+      <if test="laborCostChassis != null" >
+        labor_cost_chassis,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="sprocketCycle != null" >
+        #{sprocketCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="sprocketNum != null" >
+        #{sprocketNum,jdbcType=INTEGER},
+      </if>
+      <if test="sprocketPrice != null" >
+        #{sprocketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sprocketChangeTime != null" >
+        #{sprocketChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="idlerCycle != null" >
+        #{idlerCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="idlerNum != null" >
+        #{idlerNum,jdbcType=INTEGER},
+      </if>
+      <if test="idlerPrice != null" >
+        #{idlerPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="idlerChangeTime != null" >
+        #{idlerChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="wheelCycle != null" >
+        #{wheelCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="wheelNum != null" >
+        #{wheelNum,jdbcType=INTEGER},
+      </if>
+      <if test="wheelPrice != null" >
+        #{wheelPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="wheelChangeTime != null" >
+        #{wheelChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="trackRollersCycle != null" >
+        #{trackRollersCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="trackRollersNum != null" >
+        #{trackRollersNum,jdbcType=INTEGER},
+      </if>
+      <if test="trackRollersPrice != null" >
+        #{trackRollersPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="trackRollersChangeTime != null" >
+        #{trackRollersChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="chainCycle != null" >
+        #{chainCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="chainNum != null" >
+        #{chainNum,jdbcType=INTEGER},
+      </if>
+      <if test="chainPrice != null" >
+        #{chainPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="chainChangeTime != null" >
+        #{chainChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="axisCycle != null" >
+        #{axisCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="axisNum != null" >
+        #{axisNum,jdbcType=INTEGER},
+      </if>
+      <if test="axisPrice != null" >
+        #{axisPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="axisChangeTime != null" >
+        #{axisChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="laborCostChassis != null" >
+        #{laborCostChassis,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mysiteforme.admin.entity.DeviceChassisExample" resultType="java.lang.Integer" >
+    select count(*) from device_chassis
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update device_chassis
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.deviceId != null" >
+        device_id = #{record.deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sprocketCycle != null" >
+        sprocket_cycle = #{record.sprocketCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sprocketNum != null" >
+        sprocket_num = #{record.sprocketNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.sprocketPrice != null" >
+        sprocket_price = #{record.sprocketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sprocketChangeTime != null" >
+        sprocket_change_time = #{record.sprocketChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.idlerCycle != null" >
+        idler_cycle = #{record.idlerCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.idlerNum != null" >
+        idler_num = #{record.idlerNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.idlerPrice != null" >
+        idler_price = #{record.idlerPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.idlerChangeTime != null" >
+        idler_change_time = #{record.idlerChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wheelCycle != null" >
+        wheel_cycle = #{record.wheelCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wheelNum != null" >
+        wheel_num = #{record.wheelNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.wheelPrice != null" >
+        wheel_price = #{record.wheelPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wheelChangeTime != null" >
+        wheel_change_time = #{record.wheelChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.trackRollersCycle != null" >
+        track_rollers_cycle = #{record.trackRollersCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.trackRollersNum != null" >
+        track_rollers_num = #{record.trackRollersNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.trackRollersPrice != null" >
+        track_rollers_price = #{record.trackRollersPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.trackRollersChangeTime != null" >
+        track_rollers_change_time = #{record.trackRollersChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.chainCycle != null" >
+        chain_cycle = #{record.chainCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.chainNum != null" >
+        chain_num = #{record.chainNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.chainPrice != null" >
+        chain_price = #{record.chainPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.chainChangeTime != null" >
+        chain_change_time = #{record.chainChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.axisCycle != null" >
+        axis_cycle = #{record.axisCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.axisNum != null" >
+        axis_num = #{record.axisNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.axisPrice != null" >
+        axis_price = #{record.axisPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.axisChangeTime != null" >
+        axis_change_time = #{record.axisChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.laborCostChassis != null" >
+        labor_cost_chassis = #{record.laborCostChassis,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update device_chassis
+    set id = #{record.id,jdbcType=BIGINT},
+      device_id = #{record.deviceId,jdbcType=BIGINT},
+      sprocket_cycle = #{record.sprocketCycle,jdbcType=DECIMAL},
+      sprocket_num = #{record.sprocketNum,jdbcType=INTEGER},
+      sprocket_price = #{record.sprocketPrice,jdbcType=DECIMAL},
+      sprocket_change_time = #{record.sprocketChangeTime,jdbcType=DECIMAL},
+      idler_cycle = #{record.idlerCycle,jdbcType=DECIMAL},
+      idler_num = #{record.idlerNum,jdbcType=INTEGER},
+      idler_price = #{record.idlerPrice,jdbcType=DECIMAL},
+      idler_change_time = #{record.idlerChangeTime,jdbcType=DECIMAL},
+      wheel_cycle = #{record.wheelCycle,jdbcType=DECIMAL},
+      wheel_num = #{record.wheelNum,jdbcType=INTEGER},
+      wheel_price = #{record.wheelPrice,jdbcType=DECIMAL},
+      wheel_change_time = #{record.wheelChangeTime,jdbcType=DECIMAL},
+      track_rollers_cycle = #{record.trackRollersCycle,jdbcType=DECIMAL},
+      track_rollers_num = #{record.trackRollersNum,jdbcType=INTEGER},
+      track_rollers_price = #{record.trackRollersPrice,jdbcType=DECIMAL},
+      track_rollers_change_time = #{record.trackRollersChangeTime,jdbcType=DECIMAL},
+      chain_cycle = #{record.chainCycle,jdbcType=DECIMAL},
+      chain_num = #{record.chainNum,jdbcType=INTEGER},
+      chain_price = #{record.chainPrice,jdbcType=DECIMAL},
+      chain_change_time = #{record.chainChangeTime,jdbcType=DECIMAL},
+      axis_cycle = #{record.axisCycle,jdbcType=DECIMAL},
+      axis_num = #{record.axisNum,jdbcType=INTEGER},
+      axis_price = #{record.axisPrice,jdbcType=DECIMAL},
+      axis_change_time = #{record.axisChangeTime,jdbcType=DECIMAL},
+      labor_cost_chassis = #{record.laborCostChassis,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mysiteforme.admin.entity.DeviceChassis" >
+    update device_chassis
+    <set >
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="sprocketCycle != null" >
+        sprocket_cycle = #{sprocketCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="sprocketNum != null" >
+        sprocket_num = #{sprocketNum,jdbcType=INTEGER},
+      </if>
+      <if test="sprocketPrice != null" >
+        sprocket_price = #{sprocketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sprocketChangeTime != null" >
+        sprocket_change_time = #{sprocketChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="idlerCycle != null" >
+        idler_cycle = #{idlerCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="idlerNum != null" >
+        idler_num = #{idlerNum,jdbcType=INTEGER},
+      </if>
+      <if test="idlerPrice != null" >
+        idler_price = #{idlerPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="idlerChangeTime != null" >
+        idler_change_time = #{idlerChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="wheelCycle != null" >
+        wheel_cycle = #{wheelCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="wheelNum != null" >
+        wheel_num = #{wheelNum,jdbcType=INTEGER},
+      </if>
+      <if test="wheelPrice != null" >
+        wheel_price = #{wheelPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="wheelChangeTime != null" >
+        wheel_change_time = #{wheelChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="trackRollersCycle != null" >
+        track_rollers_cycle = #{trackRollersCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="trackRollersNum != null" >
+        track_rollers_num = #{trackRollersNum,jdbcType=INTEGER},
+      </if>
+      <if test="trackRollersPrice != null" >
+        track_rollers_price = #{trackRollersPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="trackRollersChangeTime != null" >
+        track_rollers_change_time = #{trackRollersChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="chainCycle != null" >
+        chain_cycle = #{chainCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="chainNum != null" >
+        chain_num = #{chainNum,jdbcType=INTEGER},
+      </if>
+      <if test="chainPrice != null" >
+        chain_price = #{chainPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="chainChangeTime != null" >
+        chain_change_time = #{chainChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="axisCycle != null" >
+        axis_cycle = #{axisCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="axisNum != null" >
+        axis_num = #{axisNum,jdbcType=INTEGER},
+      </if>
+      <if test="axisPrice != null" >
+        axis_price = #{axisPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="axisChangeTime != null" >
+        axis_change_time = #{axisChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="laborCostChassis != null" >
+        labor_cost_chassis = #{laborCostChassis,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mysiteforme.admin.entity.DeviceChassis" >
+    update device_chassis
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      sprocket_cycle = #{sprocketCycle,jdbcType=DECIMAL},
+      sprocket_num = #{sprocketNum,jdbcType=INTEGER},
+      sprocket_price = #{sprocketPrice,jdbcType=DECIMAL},
+      sprocket_change_time = #{sprocketChangeTime,jdbcType=DECIMAL},
+      idler_cycle = #{idlerCycle,jdbcType=DECIMAL},
+      idler_num = #{idlerNum,jdbcType=INTEGER},
+      idler_price = #{idlerPrice,jdbcType=DECIMAL},
+      idler_change_time = #{idlerChangeTime,jdbcType=DECIMAL},
+      wheel_cycle = #{wheelCycle,jdbcType=DECIMAL},
+      wheel_num = #{wheelNum,jdbcType=INTEGER},
+      wheel_price = #{wheelPrice,jdbcType=DECIMAL},
+      wheel_change_time = #{wheelChangeTime,jdbcType=DECIMAL},
+      track_rollers_cycle = #{trackRollersCycle,jdbcType=DECIMAL},
+      track_rollers_num = #{trackRollersNum,jdbcType=INTEGER},
+      track_rollers_price = #{trackRollersPrice,jdbcType=DECIMAL},
+      track_rollers_change_time = #{trackRollersChangeTime,jdbcType=DECIMAL},
+      chain_cycle = #{chainCycle,jdbcType=DECIMAL},
+      chain_num = #{chainNum,jdbcType=INTEGER},
+      chain_price = #{chainPrice,jdbcType=DECIMAL},
+      chain_change_time = #{chainChangeTime,jdbcType=DECIMAL},
+      axis_cycle = #{axisCycle,jdbcType=DECIMAL},
+      axis_num = #{axisNum,jdbcType=INTEGER},
+      axis_price = #{axisPrice,jdbcType=DECIMAL},
+      axis_change_time = #{axisChangeTime,jdbcType=DECIMAL},
+      labor_cost_chassis = #{laborCostChassis,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

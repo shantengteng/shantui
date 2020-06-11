@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mysiteforme.admin.dao.DeviceGreaseMapper" >
+  <resultMap id="BaseResultMap" type="com.mysiteforme.admin.entity.DeviceGrease" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="device_id" property="deviceId" jdbcType="BIGINT" />
+    <result column="machine_oil_cycle" property="machineOilCycle" jdbcType="DECIMAL" />
+    <result column="machine_oil_quantity" property="machineOilQuantity" jdbcType="DECIMAL" />
+    <result column="machine_oil_price" property="machineOilPrice" jdbcType="DECIMAL" />
+    <result column="machine_oil_change_time" property="machineOilChangeTime" jdbcType="DECIMAL" />
+    <result column="transmission_oil_cycle" property="transmissionOilCycle" jdbcType="DECIMAL" />
+    <result column="transmission_oil_quantity" property="transmissionOilQuantity" jdbcType="DECIMAL" />
+    <result column="transmission_oil_price" property="transmissionOilPrice" jdbcType="DECIMAL" />
+    <result column="transmission_oil_change_time" property="transmissionOilChangeTime" jdbcType="DECIMAL" />
+    <result column="finaldrive_oil_cycle" property="finaldriveOilCycle" jdbcType="DECIMAL" />
+    <result column="finaldrive_oil_quantity" property="finaldriveOilQuantity" jdbcType="DECIMAL" />
+    <result column="finaldrive_oil_price" property="finaldriveOilPrice" jdbcType="DECIMAL" />
+    <result column="finaldrive_oil_change_time" property="finaldriveOilChangeTime" jdbcType="DECIMAL" />
+    <result column="hydraulic_oil_cycle" property="hydraulicOilCycle" jdbcType="DECIMAL" />
+    <result column="hydraulic_oil_quantity" property="hydraulicOilQuantity" jdbcType="DECIMAL" />
+    <result column="hydraulic_oil_price" property="hydraulicOilPrice" jdbcType="DECIMAL" />
+    <result column="hydraulic_oil_change_time" property="hydraulicOilChangeTime" jdbcType="DECIMAL" />
+    <result column="coolant_cycle" property="coolantCycle" jdbcType="DECIMAL" />
+    <result column="coolant_quantity" property="coolantQuantity" jdbcType="DECIMAL" />
+    <result column="coolant_price" property="coolantPrice" jdbcType="DECIMAL" />
+    <result column="coolant_change_time" property="coolantChangeTime" jdbcType="DECIMAL" />
+    <result column="grease_cycle" property="greaseCycle" jdbcType="DECIMAL" />
+    <result column="grease_quantity" property="greaseQuantity" jdbcType="DECIMAL" />
+    <result column="grease_price" property="greasePrice" jdbcType="DECIMAL" />
+    <result column="grease_change_time" property="greaseChangeTime" jdbcType="DECIMAL" />
+    <result column="labor_cost_oil" property="laborCostOil" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, device_id, machine_oil_cycle, machine_oil_quantity, machine_oil_price, machine_oil_change_time, 
+    transmission_oil_cycle, transmission_oil_quantity, transmission_oil_price, transmission_oil_change_time, 
+    finaldrive_oil_cycle, finaldrive_oil_quantity, finaldrive_oil_price, finaldrive_oil_change_time, 
+    hydraulic_oil_cycle, hydraulic_oil_quantity, hydraulic_oil_price, hydraulic_oil_change_time, 
+    coolant_cycle, coolant_quantity, coolant_price, coolant_change_time, grease_cycle, 
+    grease_quantity, grease_price, grease_change_time, labor_cost_oil, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mysiteforme.admin.entity.DeviceGreaseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from device_grease
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from device_grease
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByDeviceId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from device_grease
+    where device_id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from device_grease
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mysiteforme.admin.entity.DeviceGreaseExample" >
+    delete from device_grease
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mysiteforme.admin.entity.DeviceGrease" >
+    insert into device_grease (id, device_id, machine_oil_cycle, 
+      machine_oil_quantity, machine_oil_price, machine_oil_change_time, 
+      transmission_oil_cycle, transmission_oil_quantity, 
+      transmission_oil_price, transmission_oil_change_time, 
+      finaldrive_oil_cycle, finaldrive_oil_quantity, 
+      finaldrive_oil_price, finaldrive_oil_change_time, 
+      hydraulic_oil_cycle, hydraulic_oil_quantity, 
+      hydraulic_oil_price, hydraulic_oil_change_time, 
+      coolant_cycle, coolant_quantity, coolant_price, 
+      coolant_change_time, grease_cycle, grease_quantity, 
+      grease_price, grease_change_time, labor_cost_oil, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{deviceId,jdbcType=BIGINT}, #{machineOilCycle,jdbcType=DECIMAL}, 
+      #{machineOilQuantity,jdbcType=DECIMAL}, #{machineOilPrice,jdbcType=DECIMAL}, #{machineOilChangeTime,jdbcType=DECIMAL}, 
+      #{transmissionOilCycle,jdbcType=DECIMAL}, #{transmissionOilQuantity,jdbcType=DECIMAL}, 
+      #{transmissionOilPrice,jdbcType=DECIMAL}, #{transmissionOilChangeTime,jdbcType=DECIMAL}, 
+      #{finaldriveOilCycle,jdbcType=DECIMAL}, #{finaldriveOilQuantity,jdbcType=DECIMAL}, 
+      #{finaldriveOilPrice,jdbcType=DECIMAL}, #{finaldriveOilChangeTime,jdbcType=DECIMAL}, 
+      #{hydraulicOilCycle,jdbcType=DECIMAL}, #{hydraulicOilQuantity,jdbcType=DECIMAL}, 
+      #{hydraulicOilPrice,jdbcType=DECIMAL}, #{hydraulicOilChangeTime,jdbcType=DECIMAL}, 
+      #{coolantCycle,jdbcType=DECIMAL}, #{coolantQuantity,jdbcType=DECIMAL}, #{coolantPrice,jdbcType=DECIMAL}, 
+      #{coolantChangeTime,jdbcType=DECIMAL}, #{greaseCycle,jdbcType=DECIMAL}, #{greaseQuantity,jdbcType=DECIMAL}, 
+      #{greasePrice,jdbcType=DECIMAL}, #{greaseChangeTime,jdbcType=DECIMAL}, #{laborCostOil,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mysiteforme.admin.entity.DeviceGrease" >
+    insert into device_grease
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="machineOilCycle != null" >
+        machine_oil_cycle,
+      </if>
+      <if test="machineOilQuantity != null" >
+        machine_oil_quantity,
+      </if>
+      <if test="machineOilPrice != null" >
+        machine_oil_price,
+      </if>
+      <if test="machineOilChangeTime != null" >
+        machine_oil_change_time,
+      </if>
+      <if test="transmissionOilCycle != null" >
+        transmission_oil_cycle,
+      </if>
+      <if test="transmissionOilQuantity != null" >
+        transmission_oil_quantity,
+      </if>
+      <if test="transmissionOilPrice != null" >
+        transmission_oil_price,
+      </if>
+      <if test="transmissionOilChangeTime != null" >
+        transmission_oil_change_time,
+      </if>
+      <if test="finaldriveOilCycle != null" >
+        finaldrive_oil_cycle,
+      </if>
+      <if test="finaldriveOilQuantity != null" >
+        finaldrive_oil_quantity,
+      </if>
+      <if test="finaldriveOilPrice != null" >
+        finaldrive_oil_price,
+      </if>
+      <if test="finaldriveOilChangeTime != null" >
+        finaldrive_oil_change_time,
+      </if>
+      <if test="hydraulicOilCycle != null" >
+        hydraulic_oil_cycle,
+      </if>
+      <if test="hydraulicOilQuantity != null" >
+        hydraulic_oil_quantity,
+      </if>
+      <if test="hydraulicOilPrice != null" >
+        hydraulic_oil_price,
+      </if>
+      <if test="hydraulicOilChangeTime != null" >
+        hydraulic_oil_change_time,
+      </if>
+      <if test="coolantCycle != null" >
+        coolant_cycle,
+      </if>
+      <if test="coolantQuantity != null" >
+        coolant_quantity,
+      </if>
+      <if test="coolantPrice != null" >
+        coolant_price,
+      </if>
+      <if test="coolantChangeTime != null" >
+        coolant_change_time,
+      </if>
+      <if test="greaseCycle != null" >
+        grease_cycle,
+      </if>
+      <if test="greaseQuantity != null" >
+        grease_quantity,
+      </if>
+      <if test="greasePrice != null" >
+        grease_price,
+      </if>
+      <if test="greaseChangeTime != null" >
+        grease_change_time,
+      </if>
+      <if test="laborCostOil != null" >
+        labor_cost_oil,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="machineOilCycle != null" >
+        #{machineOilCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="machineOilQuantity != null" >
+        #{machineOilQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="machineOilPrice != null" >
+        #{machineOilPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="machineOilChangeTime != null" >
+        #{machineOilChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="transmissionOilCycle != null" >
+        #{transmissionOilCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="transmissionOilQuantity != null" >
+        #{transmissionOilQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="transmissionOilPrice != null" >
+        #{transmissionOilPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="transmissionOilChangeTime != null" >
+        #{transmissionOilChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="finaldriveOilCycle != null" >
+        #{finaldriveOilCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="finaldriveOilQuantity != null" >
+        #{finaldriveOilQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="finaldriveOilPrice != null" >
+        #{finaldriveOilPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="finaldriveOilChangeTime != null" >
+        #{finaldriveOilChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="hydraulicOilCycle != null" >
+        #{hydraulicOilCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="hydraulicOilQuantity != null" >
+        #{hydraulicOilQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="hydraulicOilPrice != null" >
+        #{hydraulicOilPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="hydraulicOilChangeTime != null" >
+        #{hydraulicOilChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="coolantCycle != null" >
+        #{coolantCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="coolantQuantity != null" >
+        #{coolantQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="coolantPrice != null" >
+        #{coolantPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="coolantChangeTime != null" >
+        #{coolantChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="greaseCycle != null" >
+        #{greaseCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="greaseQuantity != null" >
+        #{greaseQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="greasePrice != null" >
+        #{greasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="greaseChangeTime != null" >
+        #{greaseChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="laborCostOil != null" >
+        #{laborCostOil,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mysiteforme.admin.entity.DeviceGreaseExample" resultType="java.lang.Integer" >
+    select count(*) from device_grease
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update device_grease
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.deviceId != null" >
+        device_id = #{record.deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.machineOilCycle != null" >
+        machine_oil_cycle = #{record.machineOilCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.machineOilQuantity != null" >
+        machine_oil_quantity = #{record.machineOilQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.machineOilPrice != null" >
+        machine_oil_price = #{record.machineOilPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.machineOilChangeTime != null" >
+        machine_oil_change_time = #{record.machineOilChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.transmissionOilCycle != null" >
+        transmission_oil_cycle = #{record.transmissionOilCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.transmissionOilQuantity != null" >
+        transmission_oil_quantity = #{record.transmissionOilQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.transmissionOilPrice != null" >
+        transmission_oil_price = #{record.transmissionOilPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.transmissionOilChangeTime != null" >
+        transmission_oil_change_time = #{record.transmissionOilChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.finaldriveOilCycle != null" >
+        finaldrive_oil_cycle = #{record.finaldriveOilCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.finaldriveOilQuantity != null" >
+        finaldrive_oil_quantity = #{record.finaldriveOilQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.finaldriveOilPrice != null" >
+        finaldrive_oil_price = #{record.finaldriveOilPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.finaldriveOilChangeTime != null" >
+        finaldrive_oil_change_time = #{record.finaldriveOilChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hydraulicOilCycle != null" >
+        hydraulic_oil_cycle = #{record.hydraulicOilCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hydraulicOilQuantity != null" >
+        hydraulic_oil_quantity = #{record.hydraulicOilQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hydraulicOilPrice != null" >
+        hydraulic_oil_price = #{record.hydraulicOilPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hydraulicOilChangeTime != null" >
+        hydraulic_oil_change_time = #{record.hydraulicOilChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.coolantCycle != null" >
+        coolant_cycle = #{record.coolantCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.coolantQuantity != null" >
+        coolant_quantity = #{record.coolantQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.coolantPrice != null" >
+        coolant_price = #{record.coolantPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.coolantChangeTime != null" >
+        coolant_change_time = #{record.coolantChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.greaseCycle != null" >
+        grease_cycle = #{record.greaseCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.greaseQuantity != null" >
+        grease_quantity = #{record.greaseQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.greasePrice != null" >
+        grease_price = #{record.greasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.greaseChangeTime != null" >
+        grease_change_time = #{record.greaseChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.laborCostOil != null" >
+        labor_cost_oil = #{record.laborCostOil,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update device_grease
+    set id = #{record.id,jdbcType=BIGINT},
+      device_id = #{record.deviceId,jdbcType=BIGINT},
+      machine_oil_cycle = #{record.machineOilCycle,jdbcType=DECIMAL},
+      machine_oil_quantity = #{record.machineOilQuantity,jdbcType=DECIMAL},
+      machine_oil_price = #{record.machineOilPrice,jdbcType=DECIMAL},
+      machine_oil_change_time = #{record.machineOilChangeTime,jdbcType=DECIMAL},
+      transmission_oil_cycle = #{record.transmissionOilCycle,jdbcType=DECIMAL},
+      transmission_oil_quantity = #{record.transmissionOilQuantity,jdbcType=DECIMAL},
+      transmission_oil_price = #{record.transmissionOilPrice,jdbcType=DECIMAL},
+      transmission_oil_change_time = #{record.transmissionOilChangeTime,jdbcType=DECIMAL},
+      finaldrive_oil_cycle = #{record.finaldriveOilCycle,jdbcType=DECIMAL},
+      finaldrive_oil_quantity = #{record.finaldriveOilQuantity,jdbcType=DECIMAL},
+      finaldrive_oil_price = #{record.finaldriveOilPrice,jdbcType=DECIMAL},
+      finaldrive_oil_change_time = #{record.finaldriveOilChangeTime,jdbcType=DECIMAL},
+      hydraulic_oil_cycle = #{record.hydraulicOilCycle,jdbcType=DECIMAL},
+      hydraulic_oil_quantity = #{record.hydraulicOilQuantity,jdbcType=DECIMAL},
+      hydraulic_oil_price = #{record.hydraulicOilPrice,jdbcType=DECIMAL},
+      hydraulic_oil_change_time = #{record.hydraulicOilChangeTime,jdbcType=DECIMAL},
+      coolant_cycle = #{record.coolantCycle,jdbcType=DECIMAL},
+      coolant_quantity = #{record.coolantQuantity,jdbcType=DECIMAL},
+      coolant_price = #{record.coolantPrice,jdbcType=DECIMAL},
+      coolant_change_time = #{record.coolantChangeTime,jdbcType=DECIMAL},
+      grease_cycle = #{record.greaseCycle,jdbcType=DECIMAL},
+      grease_quantity = #{record.greaseQuantity,jdbcType=DECIMAL},
+      grease_price = #{record.greasePrice,jdbcType=DECIMAL},
+      grease_change_time = #{record.greaseChangeTime,jdbcType=DECIMAL},
+      labor_cost_oil = #{record.laborCostOil,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mysiteforme.admin.entity.DeviceGrease" >
+    update device_grease
+    <set >
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="machineOilCycle != null" >
+        machine_oil_cycle = #{machineOilCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="machineOilQuantity != null" >
+        machine_oil_quantity = #{machineOilQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="machineOilPrice != null" >
+        machine_oil_price = #{machineOilPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="machineOilChangeTime != null" >
+        machine_oil_change_time = #{machineOilChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="transmissionOilCycle != null" >
+        transmission_oil_cycle = #{transmissionOilCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="transmissionOilQuantity != null" >
+        transmission_oil_quantity = #{transmissionOilQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="transmissionOilPrice != null" >
+        transmission_oil_price = #{transmissionOilPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="transmissionOilChangeTime != null" >
+        transmission_oil_change_time = #{transmissionOilChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="finaldriveOilCycle != null" >
+        finaldrive_oil_cycle = #{finaldriveOilCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="finaldriveOilQuantity != null" >
+        finaldrive_oil_quantity = #{finaldriveOilQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="finaldriveOilPrice != null" >
+        finaldrive_oil_price = #{finaldriveOilPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="finaldriveOilChangeTime != null" >
+        finaldrive_oil_change_time = #{finaldriveOilChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="hydraulicOilCycle != null" >
+        hydraulic_oil_cycle = #{hydraulicOilCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="hydraulicOilQuantity != null" >
+        hydraulic_oil_quantity = #{hydraulicOilQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="hydraulicOilPrice != null" >
+        hydraulic_oil_price = #{hydraulicOilPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="hydraulicOilChangeTime != null" >
+        hydraulic_oil_change_time = #{hydraulicOilChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="coolantCycle != null" >
+        coolant_cycle = #{coolantCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="coolantQuantity != null" >
+        coolant_quantity = #{coolantQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="coolantPrice != null" >
+        coolant_price = #{coolantPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="coolantChangeTime != null" >
+        coolant_change_time = #{coolantChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="greaseCycle != null" >
+        grease_cycle = #{greaseCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="greaseQuantity != null" >
+        grease_quantity = #{greaseQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="greasePrice != null" >
+        grease_price = #{greasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="greaseChangeTime != null" >
+        grease_change_time = #{greaseChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="laborCostOil != null" >
+        labor_cost_oil = #{laborCostOil,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mysiteforme.admin.entity.DeviceGrease" >
+    update device_grease
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      machine_oil_cycle = #{machineOilCycle,jdbcType=DECIMAL},
+      machine_oil_quantity = #{machineOilQuantity,jdbcType=DECIMAL},
+      machine_oil_price = #{machineOilPrice,jdbcType=DECIMAL},
+      machine_oil_change_time = #{machineOilChangeTime,jdbcType=DECIMAL},
+      transmission_oil_cycle = #{transmissionOilCycle,jdbcType=DECIMAL},
+      transmission_oil_quantity = #{transmissionOilQuantity,jdbcType=DECIMAL},
+      transmission_oil_price = #{transmissionOilPrice,jdbcType=DECIMAL},
+      transmission_oil_change_time = #{transmissionOilChangeTime,jdbcType=DECIMAL},
+      finaldrive_oil_cycle = #{finaldriveOilCycle,jdbcType=DECIMAL},
+      finaldrive_oil_quantity = #{finaldriveOilQuantity,jdbcType=DECIMAL},
+      finaldrive_oil_price = #{finaldriveOilPrice,jdbcType=DECIMAL},
+      finaldrive_oil_change_time = #{finaldriveOilChangeTime,jdbcType=DECIMAL},
+      hydraulic_oil_cycle = #{hydraulicOilCycle,jdbcType=DECIMAL},
+      hydraulic_oil_quantity = #{hydraulicOilQuantity,jdbcType=DECIMAL},
+      hydraulic_oil_price = #{hydraulicOilPrice,jdbcType=DECIMAL},
+      hydraulic_oil_change_time = #{hydraulicOilChangeTime,jdbcType=DECIMAL},
+      coolant_cycle = #{coolantCycle,jdbcType=DECIMAL},
+      coolant_quantity = #{coolantQuantity,jdbcType=DECIMAL},
+      coolant_price = #{coolantPrice,jdbcType=DECIMAL},
+      coolant_change_time = #{coolantChangeTime,jdbcType=DECIMAL},
+      grease_cycle = #{greaseCycle,jdbcType=DECIMAL},
+      grease_quantity = #{greaseQuantity,jdbcType=DECIMAL},
+      grease_price = #{greasePrice,jdbcType=DECIMAL},
+      grease_change_time = #{greaseChangeTime,jdbcType=DECIMAL},
+      labor_cost_oil = #{laborCostOil,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

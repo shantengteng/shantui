@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mysiteforme.admin.dao.DeviceDao" >
+
+    <resultMap type="com.mysiteforme.admin.entity.Device" id="DeviceMap">
+        <id property="id" column="id"/>
+        <result property="deviceName" column="device_name"/>
+        <result property="deviceType" column="device_type"/>
+        <result property="deviceDesc" column="device_desc"/>
+    </resultMap>
+
+    <select id="showAllDevicesList" resultMap="DeviceMap" parameterType="java.util.Map">
+        SELECT
+            id,
+            device_name,
+            device_type,
+            device_desc
+        FROM
+            device
+        WHERE
+            device_belong = #{device_belong}
+    </select>
+</mapper>

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>首页--layui后台管理模板</title>
+    <title>首页</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -61,7 +61,6 @@
             return m;
         }
         for(i=-14; i<=0;i++){
-            console.log(getDay(i));
             dateArray.push(getDay(i));
         }
         $.get('${base}/admin/system/log/pvs').done(function (res) {
@@ -95,89 +94,7 @@
         });
     </script>
 </div>
-<div class="row">
-    <div class="sysNotice col">
-        <blockquote class="layui-elem-quote title">更新日志</blockquote>
-        <div class="layui-elem-quote layui-quote-nm">
-            <@ar channelid="7">
-                <#if (result?size>0)>
-                    <#list result as item>
-                        ${item.content}
-                    </#list>
-                </#if>
-            </@ar>
-        </div>
-    </div>
-    <div class="sysNotice col">
-        <blockquote class="layui-elem-quote title">系统基本参数</blockquote>
-        <table class="layui-table">
-            <colgroup>
-                <col width="150">
-                <col>
-            </colgroup>
-            <tbody>
-            <tr>
-                <td>网站名称</td>
-                <td class="version">${site.name}</td>
-            </tr>
-            <tr>
-                <td>开发作者</td>
-                <td class="author">${site.author}</td>
-            </tr>
-            <tr>
-                <td>当前版本</td>
-                <td class="homePage">${site.version}</td>
-            </tr>
-            <tr>
-                <td>服务器环境</td>
-                <td class="server">${site.server}</td>
-            </tr>
-            <tr>
-                <td>数据库版本</td>
-                <td class="dataBase">${site.database}</td>
-            </tr>
-            <tr>
-                <td>最大上传限制</td>
-                <td class="maxUpload">${site.maxUpload}</td>
-            </tr>
-            <tr>
-                <td>当前用户角色</td>
-                <td class="userRights">
-                    <#if (currentUser.roleLists?? && currentUser.roleLists?size>0)>
-                        <#list currentUser.roleLists as items>
-                            <span class="layui-badge layui-bg-green">${items.name}</span>
-                        </#list>
-                    </#if>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <blockquote class="layui-elem-quote title">最新文章<i class="iconfont icon-new1"></i></blockquote>
-        <table class="layui-table" lay-skin="line">
-            <colgroup>
-                <col>
-                <col width="110">
-            </colgroup>
-            <tbody class="hot_news">
-                <@myindex limit = "5">
-                    <#if (result?size>0)>
-                        <#list result as items>
-                            <tr><td align="left">${items.title}</td><td>${items.publistTime?string("yyyy-MM-dd")}</td></tr>
-                        </#list>
-                    </#if>
-                </@myindex>
-                <#--<@ar channelId = "5">-->
-                    <#--<#assign articleList = result["articleList"]>-->
-                    <#--<#if (articleList?size>0)>-->
-                        <#--<#list articleList as items>-->
-                                <#--<tr><td align="left">${items.title}</td><td>${items.publistTime?string("yyyy-MM-dd")}</td></tr>-->
-                        <#--</#list>-->
-                    <#--</#if>-->
-                <#--</@ar>-->
-            </tbody>
-        </table>
-    </div>
-</div>
+
 
 <script type="text/javascript" src="${base}/static/layui/layui.js"></script>
 <script>

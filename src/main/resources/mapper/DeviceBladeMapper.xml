@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mysiteforme.admin.dao.DeviceBladeMapper" >
+  <resultMap id="BaseResultMap" type="com.mysiteforme.admin.entity.DeviceBlade" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="device_id" property="deviceId" jdbcType="BIGINT" />
+    <result column="blade_cycle" property="bladeCycle" jdbcType="DECIMAL" />
+    <result column="blade_num" property="bladeNum" jdbcType="INTEGER" />
+    <result column="blade_price" property="bladePrice" jdbcType="DECIMAL" />
+    <result column="blade_change_time" property="bladeChangeTime" jdbcType="DECIMAL" />
+    <result column="knife_angle_cycle" property="knifeAngleCycle" jdbcType="DECIMAL" />
+    <result column="knife_angle_num" property="knifeAngleNum" jdbcType="INTEGER" />
+    <result column="knife_angle_price" property="knifeAnglePrice" jdbcType="DECIMAL" />
+    <result column="knife_angle_change_time" property="knifeAngleChangeTime" jdbcType="DECIMAL" />
+    <result column="labor_cost_blade" property="laborCostBlade" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, device_id, blade_cycle, blade_num, blade_price, blade_change_time, knife_angle_cycle, 
+    knife_angle_num, knife_angle_price, knife_angle_change_time, labor_cost_blade, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mysiteforme.admin.entity.DeviceBladeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from device_blade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from device_blade
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from device_blade
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mysiteforme.admin.entity.DeviceBladeExample" >
+    delete from device_blade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mysiteforme.admin.entity.DeviceBlade" >
+    insert into device_blade (id, device_id, blade_cycle, 
+      blade_num, blade_price, blade_change_time, 
+      knife_angle_cycle, knife_angle_num, knife_angle_price, 
+      knife_angle_change_time, labor_cost_blade, create_time, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{deviceId,jdbcType=BIGINT}, #{bladeCycle,jdbcType=DECIMAL}, 
+      #{bladeNum,jdbcType=INTEGER}, #{bladePrice,jdbcType=DECIMAL}, #{bladeChangeTime,jdbcType=DECIMAL}, 
+      #{knifeAngleCycle,jdbcType=DECIMAL}, #{knifeAngleNum,jdbcType=INTEGER}, #{knifeAnglePrice,jdbcType=DECIMAL}, 
+      #{knifeAngleChangeTime,jdbcType=DECIMAL}, #{laborCostBlade,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mysiteforme.admin.entity.DeviceBlade" >
+    insert into device_blade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="bladeCycle != null" >
+        blade_cycle,
+      </if>
+      <if test="bladeNum != null" >
+        blade_num,
+      </if>
+      <if test="bladePrice != null" >
+        blade_price,
+      </if>
+      <if test="bladeChangeTime != null" >
+        blade_change_time,
+      </if>
+      <if test="knifeAngleCycle != null" >
+        knife_angle_cycle,
+      </if>
+      <if test="knifeAngleNum != null" >
+        knife_angle_num,
+      </if>
+      <if test="knifeAnglePrice != null" >
+        knife_angle_price,
+      </if>
+      <if test="knifeAngleChangeTime != null" >
+        knife_angle_change_time,
+      </if>
+      <if test="laborCostBlade != null" >
+        labor_cost_blade,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="bladeCycle != null" >
+        #{bladeCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="bladeNum != null" >
+        #{bladeNum,jdbcType=INTEGER},
+      </if>
+      <if test="bladePrice != null" >
+        #{bladePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bladeChangeTime != null" >
+        #{bladeChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="knifeAngleCycle != null" >
+        #{knifeAngleCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="knifeAngleNum != null" >
+        #{knifeAngleNum,jdbcType=INTEGER},
+      </if>
+      <if test="knifeAnglePrice != null" >
+        #{knifeAnglePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="knifeAngleChangeTime != null" >
+        #{knifeAngleChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="laborCostBlade != null" >
+        #{laborCostBlade,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mysiteforme.admin.entity.DeviceBladeExample" resultType="java.lang.Integer" >
+    select count(*) from device_blade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update device_blade
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.deviceId != null" >
+        device_id = #{record.deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.bladeCycle != null" >
+        blade_cycle = #{record.bladeCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bladeNum != null" >
+        blade_num = #{record.bladeNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.bladePrice != null" >
+        blade_price = #{record.bladePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bladeChangeTime != null" >
+        blade_change_time = #{record.bladeChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.knifeAngleCycle != null" >
+        knife_angle_cycle = #{record.knifeAngleCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.knifeAngleNum != null" >
+        knife_angle_num = #{record.knifeAngleNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.knifeAnglePrice != null" >
+        knife_angle_price = #{record.knifeAnglePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.knifeAngleChangeTime != null" >
+        knife_angle_change_time = #{record.knifeAngleChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.laborCostBlade != null" >
+        labor_cost_blade = #{record.laborCostBlade,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update device_blade
+    set id = #{record.id,jdbcType=BIGINT},
+      device_id = #{record.deviceId,jdbcType=BIGINT},
+      blade_cycle = #{record.bladeCycle,jdbcType=DECIMAL},
+      blade_num = #{record.bladeNum,jdbcType=INTEGER},
+      blade_price = #{record.bladePrice,jdbcType=DECIMAL},
+      blade_change_time = #{record.bladeChangeTime,jdbcType=DECIMAL},
+      knife_angle_cycle = #{record.knifeAngleCycle,jdbcType=DECIMAL},
+      knife_angle_num = #{record.knifeAngleNum,jdbcType=INTEGER},
+      knife_angle_price = #{record.knifeAnglePrice,jdbcType=DECIMAL},
+      knife_angle_change_time = #{record.knifeAngleChangeTime,jdbcType=DECIMAL},
+      labor_cost_blade = #{record.laborCostBlade,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mysiteforme.admin.entity.DeviceBlade" >
+    update device_blade
+    <set >
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="bladeCycle != null" >
+        blade_cycle = #{bladeCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="bladeNum != null" >
+        blade_num = #{bladeNum,jdbcType=INTEGER},
+      </if>
+      <if test="bladePrice != null" >
+        blade_price = #{bladePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bladeChangeTime != null" >
+        blade_change_time = #{bladeChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="knifeAngleCycle != null" >
+        knife_angle_cycle = #{knifeAngleCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="knifeAngleNum != null" >
+        knife_angle_num = #{knifeAngleNum,jdbcType=INTEGER},
+      </if>
+      <if test="knifeAnglePrice != null" >
+        knife_angle_price = #{knifeAnglePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="knifeAngleChangeTime != null" >
+        knife_angle_change_time = #{knifeAngleChangeTime,jdbcType=DECIMAL},
+      </if>
+      <if test="laborCostBlade != null" >
+        labor_cost_blade = #{laborCostBlade,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mysiteforme.admin.entity.DeviceBlade" >
+    update device_blade
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      blade_cycle = #{bladeCycle,jdbcType=DECIMAL},
+      blade_num = #{bladeNum,jdbcType=INTEGER},
+      blade_price = #{bladePrice,jdbcType=DECIMAL},
+      blade_change_time = #{bladeChangeTime,jdbcType=DECIMAL},
+      knife_angle_cycle = #{knifeAngleCycle,jdbcType=DECIMAL},
+      knife_angle_num = #{knifeAngleNum,jdbcType=INTEGER},
+      knife_angle_price = #{knifeAnglePrice,jdbcType=DECIMAL},
+      knife_angle_change_time = #{knifeAngleChangeTime,jdbcType=DECIMAL},
+      labor_cost_blade = #{laborCostBlade,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

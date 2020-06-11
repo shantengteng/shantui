@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>成本分析</title>
+    <title>成本分析列表</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -12,42 +12,20 @@
     <link rel = "shortcut icon" href="${site.logo}">
     <link rel="stylesheet" href="${base}/static/layui/css/layui.css" media="all" />
     <link rel="stylesheet" href="${base}/static/css/user.css" media="all" />
-    <link rel="stylesheet" href="${base}/static/formatJSON/jsonFormater.css" media="all" />
-    <style>
-        #Canvas {
-            margin-top: 13px;
-            padding: 20px 20px;
-        }
-        div.Canvas {
-            font-size: 13px;
-            background-color: #ECECEC;
-            color: #000000;
-            border: solid 1px #CECECE;
-        }
-    </style>
 </head>
 <body class="childrenBody">
 <fieldset class="layui-elem-field">
-    <legend>历史检索</legend>
+    <legend>用户检索</legend>
     <div class="layui-field-box">
         <form class="layui-form">
-            <div class="layui-inline" style="margin-left: 15px">
-                <label>设备名称:</label>
-                <div class="layui-input-inline">
-                    <input type="text" value="" name="s_title" placeholder="请输入设备名称" class="layui-input search_input">
-                </div>
-            </div>
-            <div class="layui-inline" style="margin-left: 15px">
-                <label>设备型号:</label>
-                <div class="layui-input-inline">
-                    <input type="text" value="" name="s_username" placeholder="请输入设备型号" class="layui-input search_input">
-                </div>
+            <div class="layui-inline" style="width: 15%">
+                <input type="text" value="" name="s_key" placeholder="可以输入登录名/邮箱/手机号" class="layui-input search_input">
             </div>
             <div class="layui-inline">
                 <a class="layui-btn" lay-submit="" lay-filter="searchForm">查询</a>
             </div>
-            <div class="layui-inline" >
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <div class="layui-inline">
+                <a class="layui-btn layui-btn-normal" data-type="addUser">添加用户</a>
             </div>
             <div class="layui-inline">
                 <a class="layui-btn layui-btn-danger" data-type="deleteSome">批量删除</a>
@@ -58,33 +36,22 @@
 <div class="layui-form users_list">
     <table class="layui-table" id="test" lay-filter="demo"></table>
 
-    <script type="text/html" id="params">
-        {{# if(d.params != '' && d.params != null){ }}
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="showParams">点我显示</a>
-        {{# }else{ }}
-        <span></span>
-        {{# } }}
-    </script>
-    <script type="text/html" id="response">
-        {{# if(d.httpMethod == 'GET'){ }}
-        <span>{{ d.response }}</span>
-        {{# }else{ }}
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="showResponse">点我显示</a>
-        {{# } }}
+    <script type="text/html" id="userStatus">
+        <!-- 这里的 checked 的状态只是演示 -->
+        {{#  if(d.delFlag == false){ }}
+        <span class="layui-badge layui-bg-green">正常</span>
+        {{#  } else { }}
+        <span class="layui-badge layui-bg-gray">停用</span>
+        {{#  } }}
     </script>
     <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
 </div>
 <div id="page"></div>
-<div id='jsonContainer' class="Canvas" style="display: none"></div>
-<script>
-    var baseDir = '${base}';
-</script>
-<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="${base}/static/layui/layui.js"></script>
 <script type="text/javascript" src="${base}/static/js/tools.js"></script>
-<script type="text/javascript" src="${base}/static/formatJSON/jsonFormater.js?v=3.0"></script>
 <script>
     layui.use(['layer','form','table'], function() {
         var layer = layui.layer,
@@ -95,12 +62,12 @@
 
         t = {
             elem: '#test',
-            url:'${base}/admin/system/log/list',
+            url:'${base}/admin/system/user/list',
             method:'post',
             page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                 layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
                 //,curr: 5 //设定初始在第 5 页
-                groups: 4, //只显示 1 个连续页码
+                groups: 2, //只显示 1 个连续页码
                 first: "首页", //显示首页
                 last: "尾页", //显示尾页
                 limits:[3,10, 20, 30]
@@ -108,24 +75,13 @@
             width: $(parent.window).width()-223,
             cols: [[
                 {type:'checkbox'},
-                {field:'type', title: '设备名称'},
-                {field:'title',  title: '设备型号'},
-                {field:'remoteAddr',     title: '折旧成本/小时'},
-                {field:'username',       title: '利息成本/小时'},
-                {field:'requestUri',    title: '保险成本/小时'},
-                {field:'httpMethod',    title: '财产税成本/小时'},
-                {field:'id',    title: '总拥有成本/小时'},
-                {field:'sessionId',    title: '燃油成本/小时'},
-                {field:'id',    title: '润滑油及人工成本/小时（使用系数）'},
-                {field:'useTime',    title: '滤芯成本/小时（使用系数）'},
-                {field:'browser',    title: '底盘，铲刀&链轨成本/小时'},
-                {field:'exception',    title: '维修成本/小时'},
-                {field:'exception',    title: '其他易损件成本/小时'},
-                {field:'exception',    title: '操作手工资/小时'},
-                {field:'exception',    title: '总使用成本/小时'},
-                {field:'exception',    title: '拥有成本&使用成本/小时'},
-                {field:'createDate',  title: '创建时间',templet:'<div>{{ layui.laytpl.toDateString(d.createDate) }}</div>',unresize: true}, //单元格内容水平居中
-                {fixed: 'right', title: '操作',width: '10%',align: 'center',toolbar: '#barDemo'}
+                {field:'loginName', title: '登录名称'},
+                {field:'nickName',  title: '昵称',    width:'10%'},
+                {field:'email',     title: '邮箱',    width:'16%' },
+                {field:'tel',       title: '电话',    width:'12%'},
+                {field:'locked',    title: '会员状态',width:'12%',templet:'#userStatus'},
+                {field:'createDate',  title: '创建时间',width:'18%',templet:'<div>{{ layui.laytpl.toDateString(d.createDate) }}</div>',unresize: true}, //单元格内容水平居中
+                {fixed: 'right',    width: '15%', align: 'center',toolbar: '#barDemo'}
             ]]
         };
         table.render(t);
@@ -133,10 +89,29 @@
         //监听工具条
         table.on('tool(demo)', function(obj){
             var data = obj.data;
+            if(obj.event === 'edit'){
+                var editIndex = layer.open({
+                    title : "编辑用户",
+                    type : 2,
+                    content : "${base}/admin/system/user/edit?id="+data.id,
+                    success : function(layero, index){
+                        setTimeout(function(){
+                            layer.tips('点击此处返回会员列表', '.layui-layer-setwin .layui-layer-close', {
+                                tips: 3
+                            });
+                        },500);
+                    }
+                });
+                //改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
+                $(window).resize(function(){
+                    layer.full(editIndex);
+                });
+                layer.full(editIndex);
+            }
             if(obj.event === "del"){
-                layer.confirm("你确定要删除该记录么？",{btn:['是的,我确定','我再想想']},
+                layer.confirm("你确定要删除该用户么？",{btn:['是的,我确定','我再想想']},
                         function(){
-                            $.post("${base}/admin/system/log/delete",{"ids":[data.id]},function (res){
+                            $.post("${base}/admin/system/user/delete",{"id":data.id},function (res){
                                 if(res.success){
                                     layer.msg("删除成功",{time: 1000},function(){
                                         table.reload('test', t);
@@ -149,61 +124,65 @@
                         }
                 )
             }
-            if(obj.event === "showParams"){
-                $("#jsonContainer").empty();
-                var options = {dom : document.getElementById('jsonContainer')};
-                window.jf = new JsonFormatter(options);
-                jf.doFormat(data.params);
-                layer.open({
-                    type: 1,
-                    title: false,
-                    closeBtn: 0,
-                    area: '516px',
-                    shadeClose: true,
-                    content: $('#jsonContainer')
-                });
-            }
-            if(obj.event === "showResponse"){
-                $("#jsonContainer").empty();
-                var options = {dom : document.getElementById('jsonContainer')};
-                window.jf = new JsonFormatter(options);
-                jf.doFormat(data.response);
-                layer.open({
-                    type: 1,
-                    title: false,
-                    closeBtn: 0,
-                    area: '516px',
-                    shadeClose: true,
-                    content: $('#jsonContainer')
-                });
-            }
         });
 
         //功能按钮
         var active={
+            addUser : function(){
+                var addIndex = layer.open({
+                    title : "添加分析数据",
+                    type : 2,
+                    content : "${base}/shantui/costAnalysis/add",
+                    success : function(layero, addIndex){
+                        setTimeout(function(){
+                            layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                                tips: 3
+                            });
+                        },500);
+                    }
+                });
+                //改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
+                $(window).resize(function(){
+                    layer.full(addIndex);
+                });
+                layer.full(addIndex);
+            },
             deleteSome : function(){                        //批量删除
                 var checkStatus = table.checkStatus('test'),
                         data = checkStatus.data;
                 if(data.length > 0){
-                    layer.confirm("你确定要删除这些日志么？",{btn:['是的,我确定','我再想想']},
+                    console.log(JSON.stringify(data));
+                    for(var i=0;i<data.length;i++){
+                        var d = data[i];
+                        if(d.id === 1){
+                            layer.msg("不能删除超级管理员");
+                            return false;
+                        }
+                    }
+                    layer.confirm("你确定要删除这些用户么？",{btn:['是的,我确定','我再想想']},
                             function(){
-                                var d = [];
-                                for(var i=0;i<data.length;i++){
-                                    d.push(data[i].id);
-                                }
-                                $.post("${base}/admin/system/log/delete",{ids:d},function (res) {
-                                    if(res.success){
-                                        layer.msg("删除成功",{time: 1000},function(){
-                                            table.reload('test', t);
-                                        });
-                                    }else{
-                                        layer.msg(res.message);
+                                var deleteindex = layer.msg('删除中，请稍候',{icon: 16,time:false,shade:0.8});
+                                $.ajax({
+                                    type:"POST",
+                                    url:"${base}/admin/system/user/deleteSome",
+                                    dataType:"json",
+                                    contentType:"application/json",
+                                    data:JSON.stringify(data),
+                                    success:function(res){
+                                        layer.close(deleteindex);
+                                        if(res.success){
+                                            layer.msg("删除成功",{time: 1000},function(){
+                                                table.reload('test', t);
+                                            });
+                                        }else{
+                                            layer.msg(res.message);
+                                        }
                                     }
                                 });
                             }
                     )
                 }else{
-                    layer.msg("请选择需要删除的日志",{time:1000});
+                    layer.msg("请选择需要删除的用户",{time:1000});
                 }
             }
         };
