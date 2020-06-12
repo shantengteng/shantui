@@ -120,6 +120,12 @@
     from device_filter
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectByDeviceId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from device_filter
+    where device_id = #{id,jdbcType=BIGINT}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from device_filter
     where id = #{id,jdbcType=BIGINT}

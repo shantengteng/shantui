@@ -1,8 +1,11 @@
 package com.mysiteforme.admin.entity;
 
+import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+@TableName("device_track")
 public class DeviceTrack {
     private Long id;
 

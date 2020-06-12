@@ -70,4 +70,20 @@ public class BaseController {
 
 	@Autowired
 	protected DeviceGreaseService deviceGreaseService;
+
+	@Autowired
+	protected  DeviceFilterService deviceFilterService;
+
+	@Autowired
+	protected  DeviceChassisService deviceChassisService;
+
+	@Autowired
+	protected DeviceBladeService deviceBladeService;
+
+	@Autowired
+	protected DeviceTrackService deviceTrackService;
+
+	@Autowired
+	protected DeviceRepairService deviceRepairService;
+
 }

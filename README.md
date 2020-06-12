@@ -1,11 +1,3 @@
-# mysiteforme
-系统后台预览地址: https://admin.mysiteforme.com 用户名:`admin`  密码:`123456`(<del>该账户不能修改密码</del>)<br/>
-技术交流QQ群：`692984846`<br/>
-## 系统更新
-* 原系统使用的七牛云上传的密钥已经失效不能使用
-* 可以更新代码选择系统默认的本地上传
-* 如继续使用旧版也可以去七牛申请10G免费的云存储空间,然后获得密钥,更新到你的配置文件中(<a href="https://portal.qiniu.com/signup?code=3l8cqxdoe8jf6" target="_blank">点我申请</a>)
-* 旧版配置文件位于`util/QiniuFileUtil`
 ## 主要功能
 * 系统用户,角色,权限增删改查,权限分配，权限配色<br/>
 * 文件上传可自由选择本地存储,七牛云存储,阿里云存储
@@ -28,16 +20,6 @@
 * 后台模板：<a href="http://layuicms.gitee.io/layuicms2.0/index.html" target="_blank">layuicms 2.0。</a>
 * 富文本：<a href="http://www.wangeditor.com/" target="_blank">wangEditor</a>
 
-### 系统登录
-![](/src/main/resources/static/images/%E7%99%BB%E5%BD%95%E9%A1%B5.png)
-### 系统权限
-![](/src/main/resources/static/images/%E6%9D%83%E9%99%90%E5%88%86%E9%85%8D.png)
-### 系统日志
-![](/src/main/resources/static/images/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97.png)
-### 数据表
-![](/src/main/resources/static/images/%E6%95%B0%E6%8D%AE%E8%A1%A8.png)
-### 权限分配
-![](/src/main/resources/static/images/%E7%B3%BB%E7%BB%9F%E6%9D%83%E9%99%90.png)
 
 ### 开发环境
 建议开发者使用以下环境，这样避免版本带来的问题
@@ -60,6 +42,4 @@
 * 注册redis系统服务 打开cmd--->切换到安装redis的目录--->`redis-server.exe --service-install redis.windows-service.conf`
 * 启动系统 预览地址为:`http://localhost:8080`  管理员用户名：`test` 密码：`1`
 
-# 技术交流<br/>
-![](https://static.mysiteforme.com/28104140.png?raw=true)
 
