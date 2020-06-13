@@ -61,7 +61,7 @@
 <body class="childrenBody">
 <form class="layui-form">
     <div style="width: 100%">
-        <div style="width:60%;float: left;margin-right: 10px">
+        <div style="width:55%;float: left;margin-right: 10px">
             <div class="table-head">
                 <table class="layui-table" style="margin-bottom: 2px;margin-top: 0px">
                     <colgroup>
@@ -109,18 +109,22 @@
                             </tr>
                             <tr>
                                 <td>设备描述</td>
-                                <td><label style="width: 100%;text-align: left" id="deviceDesc_shantui" class="layui-form-label"></label></td>
-                                <td><label style="width: 100%;text-align: left" id="deviceDesc_other" class="layui-form-label"></label></td>
+                                <td id="deviceDesc_shantui"></td>
+                                <td id="deviceDesc_other"></td>
                             </tr>
                             <tr>
                                 <td>预计拥有年限（年）</td>
-                                <td><input type="number" lay-verify="required|number" class="layui-input" id="years_shantui" name="years_shantui" autocomplete="off" placeholder="请输入拥有年限"></td>
-                                <td><input type="number" lay-verify="required|number" class="layui-input" id="years_other" name="years_other" autocomplete="off" placeholder="请输入拥有年限"></td>
+                                <td><input type="number" lay-verify="required|number" class="layui-input" id="years_shantui" name="years_shantui" autocomplete="off" placeholder="请输入拥有年限"
+                                           oninput="zjcb_st();lxcb_st();bxcb_st();ccscb_st()"></td>
+                                <td><input type="number" lay-verify="required|number" class="layui-input" id="years_other" name="years_other" autocomplete="off" placeholder="请输入拥有年限"
+                                           oninput="zjcb_ot();lxcb_ot();bxcb_ot();ccscb_ot()"></td>
                             </tr>
                             <tr>
                                 <td>预计工作时间（小时/年）</td>
-                                    <td><input type="number" lay-verify="required|number" class="layui-input" id="hours_shantui" name="hours_shantui" autocomplete="off" placeholder="请输入工作时间"></td>
-                                <td><input type="number" lay-verify="required|number" class="layui-input" id="hours_other" name="hours_other" autocomplete="off" placeholder="请输入工作时间"></td>
+                                <td><input type="number" lay-verify="required|number" class="layui-input" id="hours_shantui" name="hours_shantui" autocomplete="off" placeholder="请输入工作时间"
+                                           oninput="zjcb_st();lxcb_st();bxcb_st();ccscb_st()"></td>
+                                <td><input type="number" lay-verify="required|number" class="layui-input" id="hours_other" name="hours_other" autocomplete="off" placeholder="请输入工作时间"
+                                           oninput="zjcb_ot();lxcb_ot();bxcb_ot();ccscb_ot()"></td>
                             </tr>
                             <tbody>
                         </table>
@@ -164,7 +168,7 @@
                             <tr>
                                 <td>折旧金额</td>
                                 <td id="depreciationAmountShantui"></td>
-                                <td><label style="width: 100%;text-align: left" id="depreciationAmountOther" class="layui-form-label"></label></td>
+                                <td id="depreciationAmountOther"></td>
                             </tr>
                             <tr>
                                 <td>折旧成本/小时</td>
@@ -173,53 +177,53 @@
                             </tr>
                             <tr>
                                 <td>预计融资期</td>
-                                <td><input type="text" class="layui-input" name="financingPeriodShantui" autocomplete="off" placeholder="请输入预计融资期"></td>
-                                <td><input type="text" class="layui-input" name="financingPeriodOther" autocomplete="off" placeholder="请输入预计融资期"></td>
+                                <td><input type="number" lay-verify="required|number" class="layui-input" id="financingPeriodShantui" name="financingPeriodShantui" autocomplete="off" placeholder="请输入预计融资期" oninput="lxcb_st()"></td>
+                                <td><input type="number" lay-verify="required|number" class="layui-input" id="financingPeriodOther" name="financingPeriodOther" autocomplete="off" placeholder="请输入预计融资期" oninput="lxcb_ot()"></td>
                             </tr>
                             <tr>
                                 <td>利息率</td>
-                                <td><input type="text" class="layui-input" name="rateShantui" autocomplete="off" placeholder="请输入利息率"></td>
-                                <td><input type="text" class="layui-input" name="rateOther" autocomplete="off" placeholder="请输入利息率"></td>
+                                <td><input type="number" lay-verify="required|number" class="layui-input" id="rateShantui" name="rateShantui" autocomplete="off" placeholder="请输入利息率" oninput="lxcb_st()"></td>
+                                <td><input type="number" lay-verify="required|number" class="layui-input" id="rateOther" name="rateOther" autocomplete="off" placeholder="请输入利息率" oninput="lxcb_ot()"></td>
                             </tr>
                             <tr>
                                 <td>利息成本/小时</td>
-                                <td><label style="width: 100%;text-align: left" id="rateCostShantui" class="layui-form-label"></label></td>
-                                <td><label style="width: 100%;text-align: left" id="rateCostOther" class="layui-form-label"></label></td>
+                                <td id="rateCostShantui"></td>
+                                <td id="rateCostOther"></td>
                             </tr>
                             <tr>
                                 <td>保险率</td>
-                                <td><input type="text" class="layui-input" name="insuranceRateShantui" autocomplete="off" placeholder="请输入保险率"></td>
-                                <td><input type="text" class="layui-input" name="insuranceRateOther" autocomplete="off" placeholder="请输入保险率"></td>
+                                <td><input type="number" lay-verify="required|number" class="layui-input" id="insuranceRateShantui" name="insuranceRateShantui" autocomplete="off" placeholder="请输入保险率" oninput="bxcb_st()"></td>
+                                <td><input type="number" lay-verify="required|number" class="layui-input" id="insuranceRateOther" name="insuranceRateOther" autocomplete="off" placeholder="请输入保险率" oninput="bxcb_ot()"></td>
                             </tr>
                             <tr>
                                 <td>或每年成本</td>
-                                <td><input type="text" class="layui-input" name="insuranceYearCostShantui" autocomplete="off" placeholder="请输入每年成本"></td>
-                                <td><input type="text" class="layui-input" name="insuranceYearCostOther" autocomplete="off" placeholder="请输入每年成本"></td>
+                                <td><input type="number" lay-verify="required|number" class="layui-input" id="insuranceYearCostShantui" name="insuranceYearCostShantui" autocomplete="off" placeholder="请输入每年成本" oninput="bxcb_st()"></td>
+                                <td><input type="number" lay-verify="required|number" class="layui-input" id="insuranceYearCostOther" name="insuranceYearCostOther" autocomplete="off" placeholder="请输入每年成本" oninput="bxcb_ot()"></td>
                             </tr>
                             <tr>
                                 <td>保险成本/小时</td>
-                                <td><label style="width: 100%;text-align: left" id="insuranceCostShantui" class="layui-form-label"></label></td>
-                                <td><label style="width: 100%;text-align: left" id="insuranceCostOther" class="layui-form-label"></label></td>
+                                <td id="insuranceCostShantui"></td>
+                                <td id="insuranceCostOther"></td>
                             </tr>
                             <tr>
                                 <td>税率</td>
-                                <td><input type="text" class="layui-input" name="taxRateShantui" autocomplete="off" placeholder="请输入税率"></td>
-                                <td><input type="text" class="layui-input" name="taxRateOther" autocomplete="off" placeholder="请输入税率"></td>
+                                <td><input type="number" lay-verify="required|number" class="layui-input" id="taxRateShantui" name="taxRateShantui" autocomplete="off" placeholder="请输入税率" oninput="ccscb_st()"></td>
+                                <td><input type="number" lay-verify="required|number" class="layui-input" id="taxRateOther" name="taxRateOther" autocomplete="off" placeholder="请输入税率" oninput="ccscb_ot()"></td>
                             </tr>
                             <tr>
                                 <td>或每年成本</td>
-                                <td><input type="text" class="layui-input" name="assetYearCostShantui" autocomplete="off" placeholder="请输入每年成本"></td>
-                                <td><input type="text" class="layui-input" name="assetYearCostOther" autocomplete="off" placeholder="请输入每年成本"></td>
+                                <td><input type="number" lay-verify="required|number" class="layui-input" id="assetYearCostShantui" name="assetYearCostShantui" autocomplete="off" placeholder="请输入每年成本" oninput="ccscb_st()"></td>
+                                <td><input type="number" lay-verify="required|number" class="layui-input" id="assetYearCostOther" name="assetYearCostOther" autocomplete="off" placeholder="请输入每年成本" oninput="ccscb_ot()"></td>
                             </tr>
                             <tr>
                                 <td>财产税成本/小时</td>
-                                <td><label style="width: 100%;text-align: left" id="assetRateCostShantui" class="layui-form-label"></label></td>
-                                <td><label style="width: 100%;text-align: left" id="assetRateCostOther" class="layui-form-label"></label></td>
+                                <td id="assetRateCostShantui"></td>
+                                <td id="assetRateCostOther"></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">总拥有成本/小时</td>
-                                <td><label style="width: 100%;text-align: left" id="ownCostShantui" class="layui-form-label"></label></td>
-                                <td><label style="width: 100%;text-align: left" id="ownCostCostOther" class="layui-form-label"></label></td>
+                                <td id="ownCostShantui"></td>
+                                <td id="ownCostOther"></td>
                             </tr>
                             <tbody>
                         </table>
@@ -248,18 +252,18 @@
                             </tr>
                             <tr>
                                 <td>油耗/小时</td>
-                                <td><label style="width: 100%;text-align: left" id="OilConsumptionShantui" class="layui-form-label"></label></td>
-                                <td><label style="width: 100%;text-align: left" id="OilConsumptionOther"  class="layui-form-label"></label></td>
+                                <td id="OilConsumptionShantui"></td>
+                                <td id="OilConsumptionOther"></td>
                             </tr>
                             <tr>
                                 <td>燃油价格￥</td>
-                                <td><label style="width: 100%;text-align: left" id="fuelPriceShantui" class="layui-form-label"></label></td>
-                                <td><label style="width: 100%;text-align: left" id="fuelPriceOther"  class="layui-form-label"></label></td>
+                                <td id="fuelPriceShantui"></td>
+                                <td id="fuelPriceOther"></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">燃油成本/小时</td>
-                                <td><label style="width: 100%;text-align: left" id="fuelCostShantui" class="layui-form-label"></label></td>
-                                <td><label style="width: 100%;text-align: left" id="fuelCostOther"  class="layui-form-label"></label></td>
+                                <td id="fuelCostShantui"></td>
+                                <td id="fuelCostOther"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -715,16 +719,16 @@
                 </div>
             </div>
         </div>
-        <div style="width:35%;float: left;">
+        <div style="width:40%;float: left;">
             <table class="layui-table" style="margin-top: 0px;">
                 <thead>
                 <tr>
-                    <th colspan="3" style="text-align: center;font-weight: bold;">成本汇总（人民币）</th>
+                    <th colspan="3" style="text-align: center;font-weight: bold;">成本汇总（人民币/元）</th>
                 </tr>
                 <tr>
-                    <th style="text-align: center;width: 50%">成本条目</th>
-                    <th style="text-align: center;width: 25%">山推</th>
-                    <th style="text-align: center;width: 25%">竞品</th>
+                    <th style="text-align: center;width: 40%">成本条目</th>
+                    <th style="text-align: center;width: 30%">山推</th>
+                    <th style="text-align: center;width: 30%">竞品</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -740,28 +744,28 @@
                 </tr>
                 <tr>
                     <td>利息成本/小时</td>
-                    <td></td>
-                    <td></td>
+                    <td id="lxcbSumShantui"></td>
+                    <td id="lxcbSumOther"></td>
                 </tr>
                 <tr>
                     <td>保险成本/小时</td>
-                    <td></td>
-                    <td></td>
+                    <td id="bxcbSumShantui"></td>
+                    <td id="bxcbSumOther"></td>
                 </tr>
                 <tr>
                     <td>财产税成本/小时</td>
-                    <td></td>
-                    <td></td>
+                    <td id="ccscbSumShantui"></td>
+                    <td id="ccscbSumOther"></td>
                 </tr>
                 <tr>
                     <td style="font-weight: bold;">总拥有成本/小时</td>
-                    <td></td>
-                    <td></td>
+                    <td id="totalOwnCostShantui"></td>
+                    <td id="totalOwnCostOther"></td>
                 </tr>
                 <tr>
                     <td>燃油成本/小时</td>
-                    <td></td>
-                    <td></td>
+                    <td id="fuelCostSumShantui"></td>
+                    <td id="fuelCostSumOther"></td>
                 </tr>
                 <tr>
                     <td>润滑油及人工成本/小时（使用系数）</td>
@@ -906,8 +910,7 @@
 
                     $(deviceFuelList).each(function (index) {
                         var data = deviceFuelList[index];
-
-                        optionStr += "<option value='" + data.deviceId + "' fuel_price='" + data.fuelPrice + "' fuel_consumption='" + data.fuelConsumption + "'>"
+                        optionStr += "<option value='" + data.id + "' fuel_price='" + data.fuelPrice + "' fuel_consumption='" + data.fuelConsumption + "'>"
                                 + data.fuelConsumptionIndex + "</option>";
                     });
                     $("#fuelConsumption_shantui").append(optionStr);
@@ -920,11 +923,21 @@
             var fuel_consumption = $(data.elem).find("option:selected").attr("fuel_consumption");
             $("#OilConsumptionShantui").text(fuel_consumption);
             $("#fuelPriceShantui").text(fuel_price);
+            if(fuel_price.length == 0){
+                fuel_price = 0;
+            }
+            if(fuel_consumption.length == 0){
+                fuel_consumption = 0;
+            }
+            var fuelCost = (fuel_price*fuel_consumption).toFixed(2);//燃油成本/小时
+            $("#fuelCostShantui").text(fuelCost);
+            $("#fuelCostSumShantui").text(fuelCost);
         });
 
         form.on('select(device_other)', function (data) {
             var deviceDescOther = $(data.elem).find("option:selected").attr("device_desc");
             var id = $(data.elem).find("option:selected").attr("value");
+            var text = data.elem[data.elem.selectedIndex].text;
             $("#deviceDesc_other").text(deviceDescOther);
             $.ajax({
                 async: false, //改为同步请求
@@ -955,10 +968,13 @@
                     $("#greaseCostSimpleOther").val('');
                     $(".greaseComputationDetailOther").text('');
 
+                    //汇总赋值
+                    $("#deviceSumOther").text(text);
+
                     $(deviceFuelList).each(function (index) {
                         var data = deviceFuelList[index];
 
-                        optionStr += "<option value='" + data.deviceId + "' fuel_price='" + data.fuelPrice + "' fuel_consumption='" + data.fuelConsumption + "'>"
+                        optionStr += "<option value='" + data.id + "' fuel_price='" + data.fuelPrice + "' fuel_consumption='" + data.fuelConsumption + "'>"
                                 + data.fuelConsumptionIndex + "</option>";
                     });
                     $("#fuelConsumption_other").append(optionStr);
@@ -972,6 +988,15 @@
             var fuel_consumption = $(data.elem).find("option:selected").attr("fuel_consumption");
             $("#OilConsumptionOther").text(fuel_consumption);
             $("#fuelPriceOther").text(fuel_price);
+            if(fuel_price.length == 0){
+                fuel_price = 0;
+            }
+            if(fuel_consumption.length == 0){
+                fuel_consumption = 0;
+            }
+            var fuelCost = (fuel_price*fuel_consumption).toFixed(2);//燃油成本/小时
+            $("#fuelCostOther").text(fuelCost);
+            $("#fuelCostSumOther").text(fuelCost);
         });
 
         //油耗条件(轻载、标准、重载)
@@ -1197,6 +1222,8 @@
                 $('#laborCostFilterOther').text(deviceFilterOther.laborCostFilter);
             }
         });
+
+        var depreciationCostShantui = 0;//折旧成本
         //计算折旧成本
         window.zjcb_st = function (){
             //折旧金额=交付价格（包括附件）-更换所有轮胎的价格-以旧换新或转售价格
@@ -1218,19 +1245,356 @@
                 years_shantui=0;
             }
             if(hours_shantui.length==0){
-                years_shantui=0;
+                hours_shantui=0;
             }
             var depreciationAmountShantui = (paymentPriceShantui-tireChangePriceShantui-resalePriceShantui).toFixed(2);
             $('#depreciationAmountShantui').text(depreciationAmountShantui);
             //折旧成本=折旧金额/（预计拥有年限（年）*预计工作时间（小时/年））
-            var depreciationCostShantui = 0;
             if(years_shantui*hours_shantui==0){
-                $('#depreciationCostShantui').text(0);
+                depreciationCostShantui = 0;
             }else{
                 depreciationCostShantui = (depreciationAmountShantui/(years_shantui*hours_shantui)).toFixed(2);
-                $('#depreciationCostShantui').text(depreciationCostShantui);
             }
+            $('#depreciationCostShantui').text(depreciationCostShantui);
             $('#zjcbSumShantui').text(depreciationCostShantui);
+            var totalCost = (parseFloat(depreciationCostShantui)+parseFloat(rateCostShantui)+parseFloat(insuranceCostShantui)+parseFloat(assetRateCostShantui)).toFixed(2);
+            $('#ownCostShantui').text(totalCost);//总拥有成本
+            $('#totalOwnCostShantui').text(totalCost);//总拥有成本
+        }
+
+        var rateCostShantui = 0;//利息成本
+        //计算利息成本
+        window.lxcb_st = function (){
+            //折旧金额=交付价格（包括附件）-更换所有轮胎的价格-以旧换新或转售价格
+            var paymentPriceShantui = $('#paymentPriceShantui').val();//交付价格（包括附件）
+            var tireChangePriceShantui = $('#tireChangePriceShantui').val();//更换所有轮胎的价格
+            var resalePriceShantui = $('#resalePriceShantui').val();//以旧换新或转售价格
+            var years_shantui = $('#years_shantui').val();//预计拥有年限（年）
+            var hours_shantui = $('#hours_shantui').val();//预计工作时间（小时/年）
+            var financingPeriodShantui = $('#financingPeriodShantui').val();//预计融资期
+            var rateShantui = $('#rateShantui').val();//利息率
+            if(paymentPriceShantui.length==0){
+                paymentPriceShantui=0;
+            }
+            if(tireChangePriceShantui.length==0){
+                tireChangePriceShantui=0;
+            }
+            if(resalePriceShantui.length==0){
+                resalePriceShantui=0;
+            }
+            if(years_shantui.length==0){
+                years_shantui=0;
+            }
+            if(hours_shantui.length==0){
+                hours_shantui=0;
+            }
+            if(financingPeriodShantui.length==0){
+                financingPeriodShantui=0;
+            }
+            if(rateShantui.length==0){
+                rateShantui=0;
+            }
+            //利息成本/小时 =（预计融资期+1）/（2*预计融资期）*（交付价格（包括附件）-更换所有轮胎的价格）*利息率/预计工作时间（小时/年）*(预计融资期/预计拥有年限（年）)
+
+            if(years_shantui*hours_shantui==0){
+                rateCostShantui = 0;
+            }else{
+                if(financingPeriodShantui == 0){
+                    rateCostShantui = 0;
+                }else{
+                    rateCostShantui = ((parseFloat(financingPeriodShantui)+1)/(2*financingPeriodShantui)*(paymentPriceShantui-tireChangePriceShantui)*rateShantui/hours_shantui*(financingPeriodShantui/years_shantui)).toFixed(2);
+                }
+            }
+            $('#rateCostShantui').text(rateCostShantui);
+            $('#lxcbSumShantui').text(rateCostShantui);
+            var totalCost = (parseFloat(depreciationCostShantui)+parseFloat(rateCostShantui)+parseFloat(insuranceCostShantui)+parseFloat(assetRateCostShantui)).toFixed(2);
+            $('#ownCostShantui').text(totalCost);//总拥有成本
+            $('#totalOwnCostShantui').text(totalCost);//总拥有成本
+        }
+
+        var insuranceCostShantui = 0;//保险成本
+        //计算保险成本
+        window.bxcb_st = function (){
+            //折旧金额=交付价格（包括附件）-更换所有轮胎的价格-以旧换新或转售价格
+            var paymentPriceShantui = $('#paymentPriceShantui').val();//交付价格（包括附件）
+            var tireChangePriceShantui = $('#tireChangePriceShantui').val();//更换所有轮胎的价格
+            var resalePriceShantui = $('#resalePriceShantui').val();//以旧换新或转售价格
+            var years_shantui = $('#years_shantui').val();//预计拥有年限（年）
+            var hours_shantui = $('#hours_shantui').val();//预计工作时间（小时/年）
+            var insuranceRateShantui = $('#insuranceRateShantui').val();//保险率
+            var insuranceYearCostShantui = $('#insuranceYearCostShantui').val();//每年成本
+            if(paymentPriceShantui.length==0){
+                paymentPriceShantui=0;
+            }
+            if(tireChangePriceShantui.length==0){
+                tireChangePriceShantui=0;
+            }
+            if(resalePriceShantui.length==0){
+                resalePriceShantui=0;
+            }
+            if(years_shantui.length==0){
+                years_shantui=0;
+            }
+            if(hours_shantui.length==0){
+                hours_shantui=0;
+            }
+            if(insuranceRateShantui.length==0){
+                insuranceRateShantui=0;
+            }
+            if(insuranceYearCostShantui.length==0){
+                insuranceYearCostShantui=0;
+            }
+            //保险成本/小时 = 每年成本/预计工作时间（小时/年）--当每年成本大于0时
+            //保险成本/小时 = (预计拥有年限（年）+1)/(2*预计拥有年限（年）)*(交付价格（包括附件）-更换所有轮胎的价格)*保险率/预计工作时间（小时/年）
+
+            if(years_shantui*hours_shantui==0){
+                insuranceCostShantui = 0;
+            }else if(insuranceYearCostShantui>0){
+                insuranceCostShantui = (insuranceYearCostShantui/hours_shantui).toFixed(2);
+            }else{
+                insuranceCostShantui = ((parseFloat(years_shantui)+1)/(2*years_shantui)*(paymentPriceShantui-tireChangePriceShantui)*insuranceRateShantui/hours_shantui).toFixed(2);
+            }
+            $('#insuranceCostShantui').text(insuranceCostShantui);
+            $('#bxcbSumShantui').text(insuranceCostShantui);
+            var totalCost = (parseFloat(depreciationCostShantui)+parseFloat(rateCostShantui)+parseFloat(insuranceCostShantui)+parseFloat(assetRateCostShantui)).toFixed(2);
+            $('#ownCostShantui').text(totalCost);//总拥有成本
+            $('#totalOwnCostShantui').text(totalCost);//总拥有成本
+        }
+
+        var assetRateCostShantui = 0;//财产税成本
+        //计算财产税成本
+        window.ccscb_st = function (){
+            //折旧金额=交付价格（包括附件）-更换所有轮胎的价格-以旧换新或转售价格
+            var paymentPriceShantui = $('#paymentPriceShantui').val();//交付价格（包括附件）
+            var tireChangePriceShantui = $('#tireChangePriceShantui').val();//更换所有轮胎的价格
+            var resalePriceShantui = $('#resalePriceShantui').val();//以旧换新或转售价格
+            var years_shantui = $('#years_shantui').val();//预计拥有年限（年）
+            var hours_shantui = $('#hours_shantui').val();//预计工作时间（小时/年）
+            var taxRateShantui = $('#taxRateShantui').val();//税率
+            var assetYearCostShantui = $('#assetYearCostShantui').val();//每年成本
+            if(paymentPriceShantui.length==0){
+                paymentPriceShantui=0;
+            }
+            if(tireChangePriceShantui.length==0){
+                tireChangePriceShantui=0;
+            }
+            if(resalePriceShantui.length==0){
+                resalePriceShantui=0;
+            }
+            if(years_shantui.length==0){
+                years_shantui=0;
+            }
+            if(hours_shantui.length==0){
+                hours_shantui=0;
+            }
+            if(taxRateShantui.length==0){
+                taxRateShantui=0;
+            }
+            if(assetYearCostShantui.length==0){
+                assetYearCostShantui=0;
+            }
+            //财产税成本/小时 = 每年成本/预计工作时间（小时/年）--当每年成本大于0时
+            //保险成本/小时 = (预计拥有年限（年）+1)/(2*预计拥有年限（年）)*(交付价格（包括附件）-更换所有轮胎的价格)*税率/预计工作时间（小时/年）
+
+            if(years_shantui*hours_shantui==0){
+                assetRateCostShantui = 0;
+            }else if(assetYearCostShantui>0){
+                assetRateCostShantui = (assetYearCostShantui/hours_shantui).toFixed(2);
+            }else{
+                assetRateCostShantui = ((parseFloat(years_shantui)+1)/(2*years_shantui)*(paymentPriceShantui-tireChangePriceShantui)*taxRateShantui/hours_shantui).toFixed(2);
+            }
+            $('#assetRateCostShantui').text(assetRateCostShantui);
+            $('#ccscbSumShantui').text(assetRateCostShantui);//财产税成本汇总
+            var totalCost = (parseFloat(depreciationCostShantui)+parseFloat(rateCostShantui)+parseFloat(insuranceCostShantui)+parseFloat(assetRateCostShantui)).toFixed(2);
+            $('#ownCostShantui').text(totalCost);//总拥有成本
+            $('#totalOwnCostShantui').text(totalCost);//总拥有成本
+        }
+
+        var depreciationCostOther = 0;//折旧成本
+        //计算折旧成本
+        window.zjcb_ot = function (){
+            //折旧金额=交付价格（包括附件）-更换所有轮胎的价格-以旧换新或转售价格
+            var paymentPriceOther = $('#paymentPriceOther').val();//交付价格（包括附件）
+            var tireChangePriceOther = $('#tireChangePriceOther').val();//更换所有轮胎的价格
+            var resalePriceOther = $('#resalePriceOther').val();//以旧换新或转售价格
+            var years_other = $('#years_other').val();//预计拥有年限（年）
+            var hours_other = $('#hours_other').val();//预计工作时间（小时/年）
+            if(paymentPriceOther.length==0){
+                paymentPriceOther=0;
+            }
+            if(tireChangePriceOther.length==0){
+                tireChangePriceOther=0;
+            }
+            if(resalePriceOther.length==0){
+                resalePriceOther=0;
+            }
+            if(years_other.length==0){
+                years_other=0;
+            }
+            if(hours_other.length==0){
+                hours_other=0;
+            }
+            var depreciationAmountOther = (paymentPriceOther-tireChangePriceOther-resalePriceOther).toFixed(2);
+            $('#depreciationAmountOther').text(depreciationAmountOther);
+            //折旧成本=折旧金额/（预计拥有年限（年）*预计工作时间（小时/年））
+            if(years_other*hours_other==0){
+                depreciationCostOther = 0;
+            }else{
+                depreciationCostOther = (depreciationAmountOther/(years_other*hours_other)).toFixed(2);
+            }
+            $('#depreciationCostOther').text(depreciationCostOther);
+            $('#zjcbSumOther').text(depreciationCostOther);
+            var totalCost = (parseFloat(depreciationCostOther)+parseFloat(rateCostOther)+parseFloat(insuranceCostOther)+parseFloat(assetRateCostOther)).toFixed(2);
+            $('#ownCostOther').text(totalCost);//总拥有成本
+            $('#totalOwnCostOther').text(totalCost);//总拥有成本
+        }
+
+        var rateCostOther = 0;//利息成本
+        //计算利息成本
+        window.lxcb_ot = function (){
+            //折旧金额=交付价格（包括附件）-更换所有轮胎的价格-以旧换新或转售价格
+            var paymentPriceOther = $('#paymentPriceOther').val();//交付价格（包括附件）
+            var tireChangePriceOther = $('#tireChangePriceOther').val();//更换所有轮胎的价格
+            var resalePriceOther = $('#resalePriceOther').val();//以旧换新或转售价格
+            var years_other = $('#years_other').val();//预计拥有年限（年）
+            var hours_other = $('#hours_other').val();//预计工作时间（小时/年）
+            var financingPeriodOther = $('#financingPeriodOther').val();//预计融资期
+            var rateOther = $('#rateOther').val();//利息率
+            if(paymentPriceOther.length==0){
+                paymentPriceOther=0;
+            }
+            if(tireChangePriceOther.length==0){
+                tireChangePriceOther=0;
+            }
+            if(resalePriceOther.length==0){
+                resalePriceOther=0;
+            }
+            if(years_other.length==0){
+                years_other=0;
+            }
+            if(hours_other.length==0){
+                hours_other=0;
+            }
+            if(financingPeriodOther.length==0){
+                financingPeriodOther=0;
+            }
+            if(rateOther.length==0){
+                rateOther=0;
+            }
+            //利息成本/小时 =（预计融资期+1）/（2*预计融资期）*（交付价格（包括附件）-更换所有轮胎的价格）*利息率/预计工作时间（小时/年）*(预计融资期/预计拥有年限（年）)
+
+            if(years_other*hours_other==0){
+                rateCostOther = 0;
+            }else{
+                if(financingPeriodOther == 0){
+                    rateCostOther = 0;
+                }else{
+                    rateCostOther = ((parseFloat(financingPeriodOther)+1)/(2*financingPeriodOther)*(paymentPriceOther-tireChangePriceOther)*rateOther/hours_other*(financingPeriodOther/years_other)).toFixed(2);
+                }
+            }
+            $('#rateCostOther').text(rateCostOther);
+            $('#lxcbSumOther').text(rateCostOther);
+            var totalCost = (parseFloat(depreciationCostOther)+parseFloat(rateCostOther)+parseFloat(insuranceCostOther)+parseFloat(assetRateCostOther)).toFixed(2);
+            $('#ownCostOther').text(totalCost);//总拥有成本
+            $('#totalOwnCostOther').text(totalCost);//总拥有成本
+        }
+
+        var insuranceCostOther = 0;//保险成本
+        //计算保险成本
+        window.bxcb_ot = function (){
+            //折旧金额=交付价格（包括附件）-更换所有轮胎的价格-以旧换新或转售价格
+            var paymentPriceOther = $('#paymentPriceOther').val();//交付价格（包括附件）
+            var tireChangePriceOther = $('#tireChangePriceOther').val();//更换所有轮胎的价格
+            var resalePriceOther = $('#resalePriceOther').val();//以旧换新或转售价格
+            var years_other = $('#years_other').val();//预计拥有年限（年）
+            var hours_other = $('#hours_other').val();//预计工作时间（小时/年）
+            var insuranceRateOther = $('#insuranceRateOther').val();//保险率
+            var insuranceYearCostOther = $('#insuranceYearCostOther').val();//每年成本
+            if(paymentPriceOther.length==0){
+                paymentPriceOther=0;
+            }
+            if(tireChangePriceOther.length==0){
+                tireChangePriceOther=0;
+            }
+            if(resalePriceOther.length==0){
+                resalePriceOther=0;
+            }
+            if(years_other.length==0){
+                years_other=0;
+            }
+            if(hours_other.length==0){
+                hours_other=0;
+            }
+            if(insuranceRateOther.length==0){
+                insuranceRateOther=0;
+            }
+            if(insuranceYearCostOther.length==0){
+                insuranceYearCostOther=0;
+            }
+            //保险成本/小时 = 每年成本/预计工作时间（小时/年）--当每年成本大于0时
+            //保险成本/小时 = (预计拥有年限（年）+1)/(2*预计拥有年限（年）)*(交付价格（包括附件）-更换所有轮胎的价格)*保险率/预计工作时间（小时/年）
+
+            if(years_other*hours_other==0){
+                insuranceCostOther = 0;
+            }else if(insuranceYearCostOther>0){
+                insuranceCostOther = (insuranceYearCostOther/hours_other).toFixed(2);
+            }else{
+                insuranceCostOther = ((parseFloat(years_other)+1)/(2*years_other)*(paymentPriceOther-tireChangePriceOther)*insuranceRateOther/hours_other).toFixed(2);
+            }
+            $('#insuranceCostOther').text(insuranceCostOther);
+            $('#bxcbSumOther').text(insuranceCostOther);
+            var totalCost = (parseFloat(depreciationCostOther)+parseFloat(rateCostOther)+parseFloat(insuranceCostOther)+parseFloat(assetRateCostOther)).toFixed(2);
+            $('#ownCostOther').text(totalCost);//总拥有成本
+            $('#totalOwnCostOther').text(totalCost);//总拥有成本
+        }
+
+        var assetRateCostOther = 0;//财产税成本
+        //计算财产税成本
+        window.ccscb_ot = function (){
+            //折旧金额=交付价格（包括附件）-更换所有轮胎的价格-以旧换新或转售价格
+            var paymentPriceOther = $('#paymentPriceOther').val();//交付价格（包括附件）
+            var tireChangePriceOther = $('#tireChangePriceOther').val();//更换所有轮胎的价格
+            var resalePriceOther = $('#resalePriceOther').val();//以旧换新或转售价格
+            var years_other = $('#years_other').val();//预计拥有年限（年）
+            var hours_other = $('#hours_other').val();//预计工作时间（小时/年）
+            var taxRateOther = $('#taxRateOther').val();//税率
+            var assetYearCostOther = $('#assetYearCostOther').val();//每年成本
+            if(paymentPriceOther.length==0){
+                paymentPriceOther=0;
+            }
+            if(tireChangePriceOther.length==0){
+                tireChangePriceOther=0;
+            }
+            if(resalePriceOther.length==0){
+                resalePriceOther=0;
+            }
+            if(years_other.length==0){
+                years_other=0;
+            }
+            if(hours_other.length==0){
+                hours_other=0;
+            }
+            if(taxRateOther.length==0){
+                taxRateOther=0;
+            }
+            if(assetYearCostOther.length==0){
+                assetYearCostOther=0;
+            }
+            //财产税成本/小时 = 每年成本/预计工作时间（小时/年）--当每年成本大于0时
+            //保险成本/小时 = (预计拥有年限（年）+1)/(2*预计拥有年限（年）)*(交付价格（包括附件）-更换所有轮胎的价格)*税率/预计工作时间（小时/年）
+
+            if(years_other*hours_other==0){
+                assetRateCostOther = 0;
+            }else if(assetYearCostOther>0){
+                assetRateCostOther = (assetYearCostOther/hours_other).toFixed(2);
+            }else{
+                assetRateCostOther = ((parseFloat(years_other)+1)/(2*years_other)*(paymentPriceOther-tireChangePriceOther)*taxRateOther/hours_other).toFixed(2);
+            }
+            $('#assetRateCostOther').text(assetRateCostOther);
+            $('#ccscbSumOther').text(assetRateCostOther);//财产税成本汇总
+            var totalCost = (parseFloat(depreciationCostOther)+parseFloat(rateCostOther)+parseFloat(insuranceCostOther)+parseFloat(assetRateCostOther)).toFixed(2);
+            $('#ownCostOther').text(totalCost);//总拥有成本
+            $('#totalOwnCostOther').text(totalCost);//总拥有成本
         }
 
     });
